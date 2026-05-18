@@ -17,8 +17,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Noto+Serif+JP:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f5f1ea;--bg-secondary:#ebe5da;--surface:#fefcf7;--ink:#1a1a1a;--ink-soft:#3d3a35;--muted:#847d72;--line:#d8d0c0;--line-soft:#e8e2d4;--accent:#8b5a2b;--accent-soft:#d4a574;--gen-bg:#ecf0e8;--gen-ink:#4a6741;--it-bg:#efe6e0;--it-ink:#7c4a2d;--tag-bg:rgba(26,26,26,0.05);--tag-bg-hover:rgba(26,26,26,0.1);--tag-active-bg:#1a1a1a;--tag-active-ink:#f5f1ea;--shadow-sm:0 1px 2px rgba(60,40,20,0.04);--shadow-md:0 2px 8px rgba(60,40,20,0.06),0 12px 24px rgba(60,40,20,0.04);--shadow-xl:0 20px 60px rgba(60,40,20,0.18),0 4px 14px rgba(60,40,20,0.08);--serif:'Fraunces','Noto Serif JP',Georgia,'Hiragino Mincho ProN',serif;--sans:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
-@media (prefers-color-scheme:dark){:root{--bg:#14130f;--bg-secondary:#1c1a16;--surface:#1f1d18;--ink:#f0ece4;--ink-soft:#d1cbbe;--muted:#8c8576;--line:#2e2b25;--line-soft:#25231e;--accent:#c89968;--accent-soft:#8b6a3f;--gen-bg:#1f2a1c;--gen-ink:#a8c39c;--it-bg:#2a1f1a;--it-ink:#d4a07a;--tag-bg:rgba(240,236,228,0.06);--tag-bg-hover:rgba(240,236,228,0.12);--tag-active-bg:#f0ece4;--tag-active-ink:#14130f;--shadow-sm:0 1px 2px rgba(0,0,0,0.3);--shadow-md:0 2px 8px rgba(0,0,0,0.4),0 12px 24px rgba(0,0,0,0.3);--shadow-xl:0 20px 60px rgba(0,0,0,0.6),0 4px 14px rgba(0,0,0,0.4)}.modal-close{background:rgba(20,20,20,0.7)!important}}
+:root{--bg:#f5f1ea;--bg-secondary:#ebe5da;--surface:#fefcf7;--ink:#1a1a1a;--ink-soft:#3d3a35;--muted:#847d72;--line:#d8d0c0;--line-soft:#e8e2d4;--accent:#8b5a2b;--accent-soft:#d4a574;--gen-bg:#ecf0e8;--gen-ink:#4a6741;--it-bg:#efe6e0;--it-ink:#7c4a2d;--tag-bg:rgba(26,26,26,0.05);--tag-bg-hover:rgba(26,26,26,0.1);--tag-active-bg:#1a1a1a;--tag-active-ink:#f5f1ea;--new:#c2410c;--new-bg:#fef3ec;--shadow-sm:0 1px 2px rgba(60,40,20,0.04);--shadow-md:0 2px 8px rgba(60,40,20,0.06),0 12px 24px rgba(60,40,20,0.04);--shadow-xl:0 20px 60px rgba(60,40,20,0.18),0 4px 14px rgba(60,40,20,0.08);--serif:'Fraunces','Noto Serif JP',Georgia,'Hiragino Mincho ProN',serif;--sans:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#14130f;--bg-secondary:#1c1a16;--surface:#1f1d18;--ink:#f0ece4;--ink-soft:#d1cbbe;--muted:#8c8576;--line:#2e2b25;--line-soft:#25231e;--accent:#c89968;--accent-soft:#8b6a3f;--gen-bg:#1f2a1c;--gen-ink:#a8c39c;--it-bg:#2a1f1a;--it-ink:#d4a07a;--tag-bg:rgba(240,236,228,0.06);--tag-bg-hover:rgba(240,236,228,0.12);--tag-active-bg:#f0ece4;--tag-active-ink:#14130f;--new:#fb923c;--new-bg:#3a1f10;--shadow-sm:0 1px 2px rgba(0,0,0,0.3);--shadow-md:0 2px 8px rgba(0,0,0,0.4),0 12px 24px rgba(0,0,0,0.3);--shadow-xl:0 20px 60px rgba(0,0,0,0.6),0 4px 14px rgba(0,0,0,0.4)}.modal-close{background:rgba(20,20,20,0.7)!important}}
 *{box-sizing:border-box;margin:0;padding:0}html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px;letter-spacing:.005em}
 body.modal-open{overflow:hidden}
@@ -32,11 +32,13 @@ body.modal-open{overflow:hidden}
 .controls{max-width:1180px;margin:0 auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .search-input{flex:1 1 260px;padding:11px 16px 11px 42px;border:1px solid var(--line);border-radius:100px;background:var(--surface);color:var(--ink);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23847d72' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:16px center}
 .search-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 15%,transparent)}
-.tag-toggle{border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);padding:10px 16px;border-radius:100px;font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s}
-.tag-toggle:hover{border-color:var(--accent);color:var(--accent)}.tag-toggle .chev{width:12px;height:12px;transition:transform .25s}.tag-toggle.open .chev{transform:rotate(180deg)}
-.tag-toggle .count{background:var(--accent);color:white;padding:1px 7px;border-radius:100px;font-size:11px;margin-left:2px}
-.sort-select{border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);padding:10px 32px 10px 14px;border-radius:100px;font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23847d72' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center;transition:all .2s}
-.sort-select:hover{border-color:var(--accent);color:var(--accent)}
+.tag-toggle,.sort-select,.unread-toggle{border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);padding:10px 16px;border-radius:100px;font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s}
+.tag-toggle:hover,.sort-select:hover,.unread-toggle:hover{border-color:var(--accent);color:var(--accent)}
+.tag-toggle .chev{width:12px;height:12px;transition:transform .25s}.tag-toggle.open .chev{transform:rotate(180deg)}
+.tag-toggle .count,.unread-toggle .count{background:var(--accent);color:white;padding:1px 7px;border-radius:100px;font-size:11px;margin-left:2px}
+.unread-toggle.active{background:var(--new-bg);border-color:var(--new);color:var(--new)}
+.unread-toggle.active .count{background:var(--new)}
+.sort-select{padding:10px 32px 10px 14px;appearance:none;-webkit-appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='10' viewBox='0 0 24 24' fill='none' stroke='%23847d72' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 12px center}
 .tag-panel{max-width:1180px;margin:0 auto;padding:0 24px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
 .tag-panel.open{max-height:600px;padding:16px 24px 20px;overflow-y:auto}
 .tag-chips{display:flex;flex-wrap:wrap;gap:6px}
@@ -44,14 +46,18 @@ body.modal-open{overflow:hidden}
 .tag-chip:hover{background:var(--tag-bg-hover)}.tag-chip.active{background:var(--tag-active-bg);color:var(--tag-active-ink)}
 .clear-tags{border:0;background:transparent;color:var(--accent);padding:6px 0;margin-left:6px;font-family:var(--sans);font-size:12px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
 main{max-width:1180px;margin:0 auto;padding:36px 24px 80px}
-.stats{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:14px;margin-bottom:28px;text-align:center}
+.stats{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:14px;margin-bottom:28px;text-align:center;display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}
+.stats .markall{font-family:var(--sans);font-style:normal;font-size:12px;color:var(--accent);background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0}
+.stats .markall:hover{color:var(--ink)}
 
-/* ===== Single uniform grid ===== */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:14px}
 .card{background:var(--surface);border:1px solid var(--line-soft);border-radius:14px;cursor:pointer;display:flex;flex-direction:column;justify-content:flex-end;align-items:stretch;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;position:relative;text-align:left;overflow:hidden;aspect-ratio:1/1;padding:18px}
 .card::before{content:'';position:absolute;left:0;top:0;width:100%;height:2px;background:var(--accent);opacity:0;transition:opacity .25s}
 .card:hover{transform:translateY(-3px);border-color:var(--line);box-shadow:var(--shadow-md)}
 .card:hover::before{opacity:.8}
+.card.unread{border-color:color-mix(in srgb,var(--new) 35%,var(--line-soft))}
+.card.unread::before{background:var(--new);opacity:.4}
+.card-new-badge{position:absolute;top:12px;left:12px;font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.12em;color:white;background:var(--new);padding:3px 7px;border-radius:3px;text-transform:uppercase;line-height:1;box-shadow:0 1px 3px rgba(194,65,12,0.3)}
 .card-img-dot{position:absolute;top:14px;right:14px;width:5px;height:5px;border-radius:50%;background:var(--accent-soft);opacity:.55}
 .card-title{font-family:var(--serif);font-weight:500;font-size:15px;line-height:1.5;letter-spacing:-.005em;color:var(--ink);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:5;-webkit-box-orient:vertical}
 
@@ -90,31 +96,69 @@ footer a:hover{border-bottom-color:var(--accent)}
 </head>
 <body>
 <header class="site-header"><div class="eyebrow">Daily Trivia Archive</div><h1>毎日の<em>雑学</em>リレー</h1><p class="tagline">— 今日のニュースから、明日の話のタネへ。</p></header>
-<div class="controls-wrap"><div class="controls"><input id="search" class="search-input" type="search" placeholder="検索（例：AWS、徳川、Linus、ナポレオン...）" autocomplete="off"><select id="sortBy" class="sort-select"><option value="newest">新しい順</option><option value="oldest">古い順</option><option value="random">ランダム</option></select><button class="tag-toggle" id="tagToggle">タグ <span class="count" id="activeTagCount" style="display:none">0</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button></div><div class="tag-panel" id="tagPanel"><div class="tag-chips" id="tagChips"></div></div></div>
+<div class="controls-wrap">
+  <div class="controls">
+    <input id="search" class="search-input" type="search" placeholder="検索（例：AWS、徳川、Linus、ナポレオン...）" autocomplete="off">
+    <select id="sortBy" class="sort-select"><option value="newest">新しい順</option><option value="oldest">古い順</option><option value="random">ランダム</option></select>
+    <button class="unread-toggle" id="unreadToggle">未読のみ <span class="count" id="unreadCount" style="display:none">0</span></button>
+    <button class="tag-toggle" id="tagToggle">タグ <span class="count" id="activeTagCount" style="display:none">0</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
+  </div>
+  <div class="tag-panel" id="tagPanel"><div class="tag-chips" id="tagChips"></div></div>
+</div>
 <main><div id="stats" class="stats"></div><div id="content"><div class="loading">読み込み中…</div></div></main>
 <footer><div class="signature">— Curated daily by Cowork —</div>Powered by Cowork × GitHub Pages ・ <a href="https://github.com/zerofdy/daily-trivia" target="_blank" rel="noopener">View source</a></footer>
 <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true"><div class="modal" id="modal"><button class="modal-close" id="modalClose" aria-label="閉じる"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div id="modalContent"></div></div></div>
 <script>
-const state={data:[],query:'',sort:'newest',activeTags:new Set(),allTags:new Map(),flatList:[],currentIdx:-1};
+const READ_KEY='daily-trivia-read-v1';
+const state={data:[],query:'',sort:'newest',activeTags:new Set(),allTags:new Map(),flatList:[],currentIdx:-1,readSet:new Set(),unreadOnly:false};
+
+function topicKey(item){return item.date+'|'+item.category+'|'+(item.topic.title||'');}
+function loadRead(){try{const raw=localStorage.getItem(READ_KEY);if(raw)return new Set(JSON.parse(raw));}catch(e){}return null;}
+function saveRead(){try{localStorage.setItem(READ_KEY,JSON.stringify([...state.readSet]));}catch(e){}}
 
 async function load(){
   try{
     const res=await fetch('data.json?t='+Date.now());
     if(!res.ok)throw new Error('data.json not found');
     const json=await res.json();
-    // Flatten all topics into single list with metadata
     const all=[];
     for(const e of (json.entries||[])){
       for(const t of (e.general||[]))all.push({date:e.date,category:'general',topic:t});
       for(const t of (e.it||[]))all.push({date:e.date,category:'it',topic:t});
     }
     state.data=all;
+
+    // First-time visitors: baseline everything as read so only future additions show NEW
+    const existing=loadRead();
+    if(existing===null){
+      state.readSet=new Set(all.map(topicKey));
+      saveRead();
+    }else{
+      state.readSet=existing;
+    }
+
     collectTags();
     renderTagChips();
     render();
   }catch(e){
     document.getElementById('content').innerHTML='<div class="empty"><h3>まだ雑学がありません</h3><p>data.json が空か未配置です</p></div>';
   }
+}
+
+function markRead(item){
+  const k=topicKey(item);
+  if(!state.readSet.has(k)){
+    state.readSet.add(k);
+    saveRead();
+    return true;
+  }
+  return false;
+}
+
+function unreadCount(){
+  let c=0;
+  for(const it of state.data){if(!state.readSet.has(topicKey(it)))c++;}
+  return c;
 }
 
 function collectTags(){
@@ -143,6 +187,15 @@ function updateTagCount(){
   else c.style.display='none';
 }
 
+function updateUnreadBadge(){
+  const c=document.getElementById('unreadCount');
+  const n=unreadCount();
+  if(n>0){c.style.display='';c.textContent=n;}
+  else c.style.display='none';
+  const btn=document.getElementById('unreadToggle');
+  btn.classList.toggle('active',state.unreadOnly);
+}
+
 function toggleTag(tag){
   if(state.activeTags.has(tag))state.activeTags.delete(tag);
   else state.activeTags.add(tag);
@@ -165,6 +218,7 @@ function matchesFilters(item,q){
     const tagset=new Set(item.topic.tags||[]);
     for(const t of state.activeTags){if(!tagset.has(t))return false;}
   }
+  if(state.unreadOnly&&state.readSet.has(topicKey(item)))return false;
   return true;
 }
 
@@ -175,8 +229,10 @@ function sortItems(items){
 }
 
 function renderCard(item,query,flatIdx){
+  const isUnread=!state.readSet.has(topicKey(item));
+  const newBadge=isUnread?'<span class="card-new-badge">NEW</span>':'';
   const imgDot=item.topic.image?'<span class="card-img-dot" title="画像あり"></span>':'';
-  return `<button class="card" data-idx="${flatIdx}">${imgDot}<span class="card-title">${highlight(item.topic.title||'',query)}</span></button>`;
+  return `<button class="card${isUnread?' unread':''}" data-idx="${flatIdx}">${newBadge}${imgDot}<span class="card-title">${highlight(item.topic.title||'',query)}</span></button>`;
 }
 
 function render(){
@@ -189,21 +245,47 @@ function render(){
   const filters=[];
   if(q)filters.push(`「${escapeHtml(q)}」で検索`);
   if(state.activeTags.size)filters.push(`タグ: ${[...state.activeTags].join(', ')}`);
+  if(state.unreadOnly)filters.push(`未読のみ`);
   const filterStr=filters.length?`（${filters.join(' / ')}）`:'';
-  document.getElementById('stats').innerHTML=`<span>${state.flatList.length} トピック</span>${filterStr}`;
+  const unread=unreadCount();
+  const markAll=unread>0?`<button class="markall" id="markAllBtn">全部既読にする</button>`:'';
+  document.getElementById('stats').innerHTML=`<span>${state.flatList.length} トピック</span>${filterStr?'<span>'+filterStr+'</span>':''}${markAll}`;
   content.innerHTML=cards?`<div class="grid">${cards}</div>`:'<div class="empty"><h3>該当する雑学が見つかりませんでした</h3><p>検索条件やタグを変えてみてください</p></div>';
   document.querySelectorAll('.card').forEach(btn=>btn.addEventListener('click',()=>openModal(parseInt(btn.dataset.idx,10))));
+  const mab=document.getElementById('markAllBtn');
+  if(mab)mab.addEventListener('click',()=>{state.readSet=new Set(state.data.map(topicKey));saveRead();render();updateUnreadBadge();});
+  updateUnreadBadge();
 }
 
-/* ===== Modal ===== */
 const backdrop=document.getElementById('modalBackdrop');
 const modalContent=document.getElementById('modalContent');
-
 function modalOpen(){return backdrop.classList.contains('open');}
 
-function openModal(idx){state.currentIdx=idx;renderModal();backdrop.classList.add('open');backdrop.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');}
-function closeModal(){backdrop.classList.remove('open');backdrop.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');state.currentIdx=-1;}
-function navModal(delta){const next=state.currentIdx+delta;if(next<0||next>=state.flatList.length)return;state.currentIdx=next;renderModal();document.getElementById('modal').scrollTop=0;}
+function openModal(idx){
+  state.currentIdx=idx;
+  const item=state.flatList[idx];
+  if(item)markRead(item);
+  renderModal();
+  backdrop.classList.add('open');
+  backdrop.setAttribute('aria-hidden','false');
+  document.body.classList.add('modal-open');
+}
+function closeModal(){
+  backdrop.classList.remove('open');
+  backdrop.setAttribute('aria-hidden','true');
+  document.body.classList.remove('modal-open');
+  state.currentIdx=-1;
+  render(); // refresh cards to update NEW badges
+}
+function navModal(delta){
+  const next=state.currentIdx+delta;
+  if(next<0||next>=state.flatList.length)return;
+  state.currentIdx=next;
+  const item=state.flatList[next];
+  if(item)markRead(item);
+  renderModal();
+  document.getElementById('modal').scrollTop=0;
+}
 
 function renderModal(){
   const item=state.flatList[state.currentIdx];
@@ -229,6 +311,7 @@ document.addEventListener('keydown',(e)=>{if(!modalOpen())return;if(e.key==='Esc
 
 document.getElementById('search').addEventListener('input',e=>{state.query=e.target.value;render();});
 document.getElementById('sortBy').addEventListener('change',e=>{state.sort=e.target.value;render();});
+document.getElementById('unreadToggle').addEventListener('click',()=>{state.unreadOnly=!state.unreadOnly;render();});
 const tagToggle=document.getElementById('tagToggle');
 tagToggle.addEventListener('click',()=>{tagToggle.classList.toggle('open');document.getElementById('tagPanel').classList.toggle('open');});
 
