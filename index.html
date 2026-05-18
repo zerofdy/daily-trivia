@@ -49,8 +49,6 @@ body.modal-open{overflow:hidden}
 main{max-width:1180px;margin:0 auto;padding:36px 24px 80px}
 .stats{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:14px;margin-bottom:28px;text-align:center;display:flex;justify-content:center;align-items:center;gap:14px;flex-wrap:wrap}
 .stats .markall{font-family:var(--sans);font-style:normal;font-size:12px;color:var(--accent);background:none;border:0;cursor:pointer;text-decoration:underline;text-underline-offset:3px;padding:0}
-
-/* ===== Image-driven square cards ===== */
 .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:14px}
 .card{background:var(--bg-secondary);border:1px solid var(--line-soft);border-radius:14px;cursor:pointer;display:block;transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease;position:relative;text-align:left;overflow:hidden;aspect-ratio:1/1;padding:0;width:100%}
 .card:hover{transform:translateY(-3px);border-color:var(--line);box-shadow:var(--shadow-md)}
@@ -61,7 +59,6 @@ main{max-width:1180px;margin:0 auto;padding:36px 24px 80px}
 .card-genre-badge{position:absolute;top:10px;left:10px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.12em;color:#fff;background:rgba(0,0,0,0.5);padding:5px 9px;border-radius:4px;text-transform:uppercase;line-height:1;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);text-shadow:0 1px 2px rgba(0,0,0,0.3)}
 .card-new-badge{position:absolute;top:10px;right:10px;font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.12em;color:#fff;background:var(--new);padding:4px 8px;border-radius:4px;text-transform:uppercase;line-height:1;box-shadow:0 2px 6px rgba(194,65,12,0.5)}
 .card-title{position:absolute;left:14px;right:14px;bottom:14px;font-family:var(--serif);font-weight:600;font-size:15px;line-height:1.35;letter-spacing:-.005em;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.6);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical}
-
 .modal-backdrop{position:fixed;inset:0;background:rgba(20,15,10,0.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:100;opacity:0;pointer-events:none;transition:opacity .25s ease;display:flex;align-items:center;justify-content:center;padding:24px}
 .modal-backdrop.open{opacity:1;pointer-events:auto}
 .modal{background:var(--surface);border-radius:18px;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-xl);transform:translateY(20px) scale(.97);opacity:0;transition:transform .3s cubic-bezier(.2,.9,.3,1.1),opacity .2s ease;position:relative}
@@ -116,6 +113,7 @@ footer a:hover{border-bottom-color:var(--accent)}
 <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true"><div class="modal" id="modal"><button class="modal-close" id="modalClose" aria-label="閉じる"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div id="modalContent"></div></div></div>
 <script>
 const READ_KEY='daily-trivia-read-v1';
+const GENRE_ORDER=['時事','IT','歴史','飲食','企業','ゲーム','漫画','人物','自然・生物','文化・言葉','その他'];
 const state={data:[],query:'',sort:'newest',activeTags:new Set(),activeGenres:new Set(),allTags:new Map(),allGenres:new Map(),flatList:[],currentIdx:-1,readSet:new Set(),unreadOnly:false};
 
 function topicKey(item){return item.date+'|'+(item.topic.title||'');}
@@ -129,24 +127,17 @@ async function load(){
     const json=await res.json();
     const all=[];
     for(const e of (json.entries||[])){
-      if(Array.isArray(e.topics)){
-        for(const t of e.topics)all.push({date:e.date,topic:t});
-      }else{
+      if(Array.isArray(e.topics)){for(const t of e.topics)all.push({date:e.date,topic:t});}
+      else{
         for(const t of (e.general||[]))all.push({date:e.date,topic:{...t,genre:t.genre||'その他'}});
         for(const t of (e.it||[]))all.push({date:e.date,topic:{...t,genre:t.genre||'IT'}});
       }
     }
     state.data=all;
-
     const existing=loadRead();
-    if(existing===null){
-      state.readSet=new Set(all.map(topicKey));
-      saveRead();
-    }else{state.readSet=existing;}
-
-    collectFacets();
-    renderChips();
-    render();
+    if(existing===null){state.readSet=new Set(all.map(topicKey));saveRead();}
+    else{state.readSet=existing;}
+    collectFacets();renderChips();render();
   }catch(e){
     document.getElementById('content').innerHTML='<div class="empty"><h3>まだ雑学がありません</h3><p>data.json が空か未配置です</p></div>';
   }
@@ -160,9 +151,8 @@ function collectFacets(){
     for(const tag of (item.topic.tags||[])){tm.set(tag,(tm.get(tag)||0)+1);}
   }
   state.allTags=new Map([...tm.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])));
-  const order=['時事','IT','歴史','飲食','企業','ゲーム','人物','自然・生物','文化・言葉','その他'];
-  const sorted=order.filter(g=>gm.has(g)).map(g=>[g,gm.get(g)]);
-  for(const [g,n] of gm){if(!order.includes(g))sorted.push([g,n]);}
+  const sorted=GENRE_ORDER.filter(g=>gm.has(g)).map(g=>[g,gm.get(g)]);
+  for(const [g,n] of gm){if(!GENRE_ORDER.includes(g))sorted.push([g,n]);}
   state.allGenres=new Map(sorted);
 }
 
@@ -173,45 +163,27 @@ function renderChips(){
   document.querySelectorAll('#genreChips .chip').forEach(btn=>btn.addEventListener('click',()=>toggleGenre(btn.dataset.genre)));
   const gc=document.getElementById('clearGenres');
   if(gc)gc.addEventListener('click',()=>{state.activeGenres.clear();renderChips();render();updateFilterCount();});
-
   const tagHtml=[...state.allTags.entries()].map(([tag,n])=>`<button class="chip${state.activeTags.has(tag)?' active':''}" data-tag="${escapeAttr(tag)}">${escapeHtml(tag)} <span style="opacity:.5">${n}</span></button>`).join('');
   const tClear=state.activeTags.size?`<button class="clear-btn" id="clearTags">× クリア</button>`:'';
   document.getElementById('tagChips').innerHTML=tagHtml+tClear;
   document.querySelectorAll('#tagChips .chip').forEach(btn=>btn.addEventListener('click',()=>toggleTag(btn.dataset.tag)));
   const tc=document.getElementById('clearTags');
   if(tc)tc.addEventListener('click',()=>{state.activeTags.clear();renderChips();render();updateFilterCount();});
-
   updateFilterCount();
 }
 
-function updateFilterCount(){
-  const c=document.getElementById('filterCount');
-  const n=state.activeGenres.size+state.activeTags.size;
-  if(n>0){c.style.display='';c.textContent=n;}else c.style.display='none';
-}
-
-function updateUnreadBadge(){
-  const c=document.getElementById('unreadCount');
-  const n=unreadCount();
-  if(n>0){c.style.display='';c.textContent=n;}else c.style.display='none';
-  document.getElementById('unreadToggle').classList.toggle('active',state.unreadOnly);
-}
-
+function updateFilterCount(){const c=document.getElementById('filterCount');const n=state.activeGenres.size+state.activeTags.size;if(n>0){c.style.display='';c.textContent=n;}else c.style.display='none';}
+function updateUnreadBadge(){const c=document.getElementById('unreadCount');const n=unreadCount();if(n>0){c.style.display='';c.textContent=n;}else c.style.display='none';document.getElementById('unreadToggle').classList.toggle('active',state.unreadOnly);}
 function unreadCount(){let c=0;for(const it of state.data){if(!state.readSet.has(topicKey(it)))c++;}return c;}
-
 function toggleTag(tag){if(state.activeTags.has(tag))state.activeTags.delete(tag);else state.activeTags.add(tag);renderChips();render();if(modalOpen())renderModal();}
 function toggleGenre(g){if(state.activeGenres.has(g))state.activeGenres.delete(g);else state.activeGenres.add(g);renderChips();render();if(modalOpen())renderModal();}
-
 function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function escapeAttr(s){return escapeHtml(s);}
 function highlight(text,query){const safe=escapeHtml(text);if(!query)return safe;const re=new RegExp('('+query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');return safe.replace(re,'<mark>$1</mark>');}
 function formatDatePlain(dateStr){const[y,m,d]=dateStr.split('-');return `${y}.${m}.${d}`;}
 
 function matchesFilters(item,q){
-  if(q){
-    const hay=((item.topic.title||'')+' '+(item.topic.body||'')+' '+(item.topic.tags||[]).join(' ')+' '+(item.topic.genre||'')).toLowerCase();
-    if(!hay.includes(q.toLowerCase()))return false;
-  }
+  if(q){const hay=((item.topic.title||'')+' '+(item.topic.body||'')+' '+(item.topic.tags||[]).join(' ')+' '+(item.topic.genre||'')).toLowerCase();if(!hay.includes(q.toLowerCase()))return false;}
   if(state.activeGenres.size>0){if(!state.activeGenres.has(item.topic.genre||'その他'))return false;}
   if(state.activeTags.size>0){const tagset=new Set(item.topic.tags||[]);for(const t of state.activeTags){if(!tagset.has(t))return false;}}
   if(state.unreadOnly&&state.readSet.has(topicKey(item)))return false;
@@ -228,9 +200,7 @@ function renderCard(item,query,flatIdx){
   const isUnread=!state.readSet.has(topicKey(item));
   const newBadge=isUnread?'<span class="card-new-badge">NEW</span>':'';
   const genre=item.topic.genre||'その他';
-  const img=item.topic.image
-    ? `<img class="card-img" src="${escapeAttr(item.topic.image)}" alt="" loading="lazy" onerror="this.style.display='none'">`
-    : `<div class="card-img"></div>`;
+  const img=item.topic.image?`<img class="card-img" src="${escapeAttr(item.topic.image)}" alt="" loading="lazy" onerror="this.style.display='none'">`:`<div class="card-img"></div>`;
   return `<button class="card${isUnread?' unread':''}" data-idx="${flatIdx}">${img}<div class="card-gradient"></div><span class="card-genre-badge">${escapeHtml(genre)}</span>${newBadge}<span class="card-title">${highlight(item.topic.title||'',query)}</span></button>`;
 }
 
@@ -256,19 +226,15 @@ function render(){
   updateUnreadBadge();
 }
 
-const backdrop=document.getElementById('modalBackdrop');
-const modalContent=document.getElementById('modalContent');
+const backdrop=document.getElementById('modalBackdrop');const modalContent=document.getElementById('modalContent');
 function modalOpen(){return backdrop.classList.contains('open');}
-
 function markRead(item){const k=topicKey(item);if(!state.readSet.has(k)){state.readSet.add(k);saveRead();return true;}return false;}
-
 function openModal(idx){state.currentIdx=idx;const item=state.flatList[idx];if(item)markRead(item);renderModal();backdrop.classList.add('open');backdrop.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');}
 function closeModal(){backdrop.classList.remove('open');backdrop.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');state.currentIdx=-1;render();}
 function navModal(delta){const next=state.currentIdx+delta;if(next<0||next>=state.flatList.length)return;state.currentIdx=next;const item=state.flatList[next];if(item)markRead(item);renderModal();document.getElementById('modal').scrollTop=0;}
 
 function renderModal(){
-  const item=state.flatList[state.currentIdx];
-  if(!item)return;
+  const item=state.flatList[state.currentIdx];if(!item)return;
   const{date,topic}=item;
   const genre=topic.genre||'その他';
   const img=topic.image?`<img class="modal-img" src="${escapeAttr(topic.image)}" alt="" onerror="this.style.display='none'">`:'';
@@ -287,13 +253,11 @@ function renderModal(){
 backdrop.addEventListener('click',(e)=>{if(e.target===backdrop)closeModal();});
 document.getElementById('modalClose').addEventListener('click',closeModal);
 document.addEventListener('keydown',(e)=>{if(!modalOpen())return;if(e.key==='Escape')closeModal();else if(e.key==='ArrowLeft')navModal(-1);else if(e.key==='ArrowRight')navModal(1);});
-
 document.getElementById('search').addEventListener('input',e=>{state.query=e.target.value;render();});
 document.getElementById('sortBy').addEventListener('change',e=>{state.sort=e.target.value;render();});
 document.getElementById('unreadToggle').addEventListener('click',()=>{state.unreadOnly=!state.unreadOnly;render();});
 const ft=document.getElementById('filterToggle');
 ft.addEventListener('click',()=>{ft.classList.toggle('open');document.getElementById('filterPanel').classList.toggle('open');});
-
 load();
 </script>
 </body>
