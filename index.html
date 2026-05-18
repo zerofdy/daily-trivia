@@ -17,774 +17,122 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&family=Noto+Serif+JP:wght@400;500;600&family=Noto+Sans+JP:wght@400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --bg: #f5f1ea;
-    --bg-secondary: #ebe5da;
-    --surface: #fefcf7;
-    --ink: #1a1a1a;
-    --ink-soft: #3d3a35;
-    --muted: #847d72;
-    --line: #d8d0c0;
-    --line-soft: #e8e2d4;
-    --accent: #8b5a2b;
-    --accent-soft: #d4a574;
-    --gen-bg: #ecf0e8;
-    --gen-ink: #4a6741;
-    --it-bg: #efe6e0;
-    --it-ink: #7c4a2d;
-    --tag-bg: rgba(26,26,26,0.05);
-    --tag-bg-hover: rgba(26,26,26,0.1);
-    --tag-active-bg: #1a1a1a;
-    --tag-active-ink: #f5f1ea;
-    --shadow-sm: 0 1px 2px rgba(60,40,20,0.04);
-    --shadow-md: 0 2px 8px rgba(60,40,20,0.06), 0 12px 24px rgba(60,40,20,0.04);
-    --shadow-xl: 0 20px 60px rgba(60,40,20,0.18), 0 4px 14px rgba(60,40,20,0.08);
-    --serif: 'Fraunces', 'Noto Serif JP', Georgia, 'Hiragino Mincho ProN', serif;
-    --sans: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  }
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --bg: #14130f;
-      --bg-secondary: #1c1a16;
-      --surface: #1f1d18;
-      --ink: #f0ece4;
-      --ink-soft: #d1cbbe;
-      --muted: #8c8576;
-      --line: #2e2b25;
-      --line-soft: #25231e;
-      --accent: #c89968;
-      --accent-soft: #8b6a3f;
-      --gen-bg: #1f2a1c;
-      --gen-ink: #a8c39c;
-      --it-bg: #2a1f1a;
-      --it-ink: #d4a07a;
-      --tag-bg: rgba(240,236,228,0.06);
-      --tag-bg-hover: rgba(240,236,228,0.12);
-      --tag-active-bg: #f0ece4;
-      --tag-active-ink: #14130f;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
-      --shadow-md: 0 2px 8px rgba(0,0,0,0.4), 0 12px 24px rgba(0,0,0,0.3);
-      --shadow-xl: 0 20px 60px rgba(0,0,0,0.6), 0 4px 14px rgba(0,0,0,0.4);
-    }
-  }
-  * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body {
-    font-family: var(--sans);
-    background: var(--bg);
-    color: var(--ink);
-    line-height: 1.7;
-    font-size: 15px;
-    letter-spacing: 0.005em;
-  }
-  body.modal-open { overflow: hidden; }
-
-  .site-header {
-    padding: 56px 24px 32px;
-    text-align: center;
-    border-bottom: 1px solid var(--line);
-    position: relative;
-  }
-  .site-header::after {
-    content: '';
-    position: absolute;
-    left: 50%; bottom: -1px;
-    width: 60px; height: 1px;
-    background: var(--accent);
-    transform: translateX(-50%);
-  }
-  .site-header .eyebrow {
-    text-transform: uppercase;
-    letter-spacing: 0.25em;
-    font-size: 11px;
-    color: var(--muted);
-    margin-bottom: 14px;
-    font-weight: 500;
-  }
-  .site-header h1 {
-    font-family: var(--serif);
-    font-weight: 400;
-    font-size: clamp(36px, 6vw, 56px);
-    letter-spacing: -0.02em;
-    line-height: 1.1;
-  }
-  .site-header h1 em {
-    font-style: italic;
-    font-weight: 300;
-    color: var(--accent);
-  }
-  .site-header .tagline {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 300;
-    color: var(--muted);
-    margin-top: 14px;
-    font-size: 16px;
-  }
-
-  .controls-wrap {
-    position: sticky;
-    top: 0;
-    background: color-mix(in srgb, var(--bg) 92%, transparent);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--line-soft);
-    z-index: 50;
-    padding: 16px 24px;
-  }
-  .controls {
-    max-width: 1180px;
-    margin: 0 auto;
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    flex-wrap: wrap;
-  }
-  .search-input {
-    flex: 1 1 260px;
-    padding: 11px 16px 11px 42px;
-    border: 1px solid var(--line);
-    border-radius: 100px;
-    background: var(--surface);
-    color: var(--ink);
-    font-family: var(--sans);
-    font-size: 14px;
-    outline: none;
-    transition: border-color 0.2s, box-shadow 0.2s;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23847d72' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position: 16px center;
-  }
-  .search-input:focus {
-    border-color: var(--accent);
-    box-shadow: 0 0 0 3px color-mix(in srgb, var(--accent) 15%, transparent);
-  }
-  .filter-segment {
-    display: inline-flex;
-    background: var(--surface);
-    border: 1px solid var(--line);
-    border-radius: 100px;
-    padding: 3px;
-  }
-  .seg-btn {
-    border: 0;
-    background: transparent;
-    padding: 8px 16px;
-    border-radius: 100px;
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--muted);
-    cursor: pointer;
-    transition: all 0.2s;
-  }
-  .seg-btn:hover { color: var(--ink); }
-  .seg-btn.active {
-    background: var(--ink);
-    color: var(--bg);
-  }
-  .tag-toggle {
-    border: 1px solid var(--line);
-    background: var(--surface);
-    color: var(--ink-soft);
-    padding: 10px 16px;
-    border-radius: 100px;
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    transition: all 0.2s;
-  }
-  .tag-toggle:hover { border-color: var(--accent); color: var(--accent); }
-  .tag-toggle .chev {
-    width: 12px; height: 12px;
-    transition: transform 0.25s;
-  }
-  .tag-toggle.open .chev { transform: rotate(180deg); }
-  .tag-toggle .count {
-    background: var(--accent);
-    color: white;
-    padding: 1px 7px;
-    border-radius: 100px;
-    font-size: 11px;
-    margin-left: 2px;
-  }
-  .tag-panel {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 24px;
-    max-height: 0;
-    overflow: hidden;
-    transition: max-height 0.3s ease, padding 0.3s ease;
-  }
-  .tag-panel.open {
-    max-height: 600px;
-    padding: 16px 24px 20px;
-    overflow-y: auto;
-  }
-  .tag-chips {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-  }
-  .tag-chip {
-    border: 0;
-    background: var(--tag-bg);
-    color: var(--ink-soft);
-    padding: 6px 12px;
-    border-radius: 100px;
-    font-family: var(--sans);
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .tag-chip:hover { background: var(--tag-bg-hover); }
-  .tag-chip.active {
-    background: var(--tag-active-bg);
-    color: var(--tag-active-ink);
-  }
-  .clear-tags {
-    border: 0;
-    background: transparent;
-    color: var(--accent);
-    padding: 6px 0;
-    margin-left: 6px;
-    font-family: var(--sans);
-    font-size: 12px;
-    cursor: pointer;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-  }
-
-  main {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 28px 24px 80px;
-  }
-  .stats {
-    font-family: var(--serif);
-    font-style: italic;
-    color: var(--muted);
-    font-size: 14px;
-    margin-bottom: 32px;
-    text-align: center;
-  }
-
-  .day-section { margin-bottom: 48px; }
-  .day-header {
-    display: flex;
-    align-items: baseline;
-    gap: 16px;
-    margin-bottom: 20px;
-    padding-bottom: 12px;
-    border-bottom: 1px solid var(--line);
-  }
-  .day-header .date {
-    font-family: var(--serif);
-    font-size: 26px;
-    font-weight: 400;
-    letter-spacing: -0.01em;
-  }
-  .day-header .date .num {
-    font-variant-numeric: tabular-nums;
-    font-style: italic;
-    color: var(--accent);
-    font-weight: 300;
-  }
-  .day-header .relative {
-    font-size: 11px;
-    color: var(--muted);
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-  }
-  .relay-label {
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin: 20px 0 12px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-  .relay-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--line-soft);
-  }
-  .relay-label .dot {
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-  }
-  .relay-label.it .dot { background: var(--it-ink); }
-  .relay-label.gen .dot { background: var(--gen-ink); }
-
-  /* ===== Compact title-only cards ===== */
-  .grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 10px;
-  }
-  .card {
-    background: var(--surface);
-    border: 1px solid var(--line-soft);
-    border-radius: 12px;
-    padding: 14px 16px 14px 18px;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
-    position: relative;
-    text-align: left;
-    overflow: hidden;
-  }
-  .card::before {
-    content: '';
-    position: absolute;
-    left: 0; top: 0; bottom: 0;
-    width: 3px;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-  .card.general::before { background: var(--gen-ink); }
-  .card.it::before { background: var(--it-ink); }
-  .card:hover {
-    transform: translateY(-1px);
-    border-color: var(--line);
-    box-shadow: var(--shadow-md);
-  }
-  .card:hover::before { opacity: 1; }
-  .card-num {
-    flex: 0 0 auto;
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 300;
-    font-size: 18px;
-    color: var(--muted);
-    width: 22px;
-    text-align: center;
-    font-variant-numeric: tabular-nums;
-  }
-  .card-title {
-    flex: 1;
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: 15px;
-    line-height: 1.4;
-    letter-spacing: -0.005em;
-    color: var(--ink);
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
-  }
-  .card-icon {
-    flex: 0 0 auto;
-    color: var(--muted);
-    opacity: 0;
-    transition: opacity 0.2s, transform 0.2s;
-  }
-  .card:hover .card-icon { opacity: 0.6; transform: translateX(2px); }
-  .card-has-img {
-    flex: 0 0 auto;
-    width: 6px; height: 6px;
-    border-radius: 50%;
-    background: var(--accent-soft);
-    opacity: 0.5;
-  }
-
-  /* ===== Modal ===== */
-  .modal-backdrop {
-    position: fixed;
-    inset: 0;
-    background: rgba(20,15,10,0.55);
-    backdrop-filter: blur(4px);
-    -webkit-backdrop-filter: blur(4px);
-    z-index: 100;
-    opacity: 0;
-    pointer-events: none;
-    transition: opacity 0.25s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 24px;
-  }
-  .modal-backdrop.open {
-    opacity: 1;
-    pointer-events: auto;
-  }
-  .modal {
-    background: var(--surface);
-    border-radius: 18px;
-    max-width: 720px;
-    width: 100%;
-    max-height: 90vh;
-    overflow-y: auto;
-    box-shadow: var(--shadow-xl);
-    transform: translateY(20px) scale(0.97);
-    opacity: 0;
-    transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1), opacity 0.2s ease;
-    position: relative;
-  }
-  .modal-backdrop.open .modal {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  .modal-close {
-    position: absolute;
-    top: 14px; right: 14px;
-    width: 36px; height: 36px;
-    border-radius: 50%;
-    background: rgba(255,255,255,0.85);
-    border: 1px solid var(--line-soft);
-    color: var(--ink);
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 0.2s;
-    z-index: 5;
-    backdrop-filter: blur(8px);
-  }
-  @media (prefers-color-scheme: dark) {
-    .modal-close { background: rgba(20,20,20,0.7); }
-  }
-  .modal-close:hover {
-    background: var(--ink);
-    color: var(--bg);
-    border-color: var(--ink);
-  }
-  .modal-img {
-    width: 100%;
-    max-height: 320px;
-    object-fit: cover;
-    background: var(--bg-secondary);
-    display: block;
-  }
-  .modal-body {
-    padding: 28px 36px 36px;
-  }
-  .modal-meta {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    margin-bottom: 12px;
-    flex-wrap: wrap;
-  }
-  .cat-badge {
-    font-size: 10px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.15em;
-    padding: 4px 10px;
-    border-radius: 4px;
-  }
-  .cat-badge.general { background: var(--gen-bg); color: var(--gen-ink); }
-  .cat-badge.it { background: var(--it-bg); color: var(--it-ink); }
-  .modal-date {
-    font-family: var(--serif);
-    font-size: 13px;
-    color: var(--muted);
-    font-style: italic;
-  }
-  .modal-news {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 13px;
-    color: var(--muted);
-    border-left: 2px solid var(--accent);
-    padding: 4px 0 4px 12px;
-    margin: 12px 0 16px;
-  }
-  .modal-news::before { content: '起点: '; opacity: 0.7; }
-  .modal-title {
-    font-family: var(--serif);
-    font-weight: 500;
-    font-size: clamp(24px, 4vw, 32px);
-    line-height: 1.25;
-    letter-spacing: -0.015em;
-    margin-bottom: 18px;
-    color: var(--ink);
-  }
-  .modal-text {
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.85;
-    color: var(--ink-soft);
-    white-space: pre-wrap;
-    word-break: break-word;
-  }
-  .modal-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 6px;
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px solid var(--line-soft);
-  }
-  .modal-tag {
-    border: 0;
-    background: var(--tag-bg);
-    color: var(--ink-soft);
-    padding: 5px 11px;
-    border-radius: 100px;
-    font-family: var(--sans);
-    font-size: 12px;
-    cursor: pointer;
-    transition: all 0.15s;
-  }
-  .modal-tag:hover { background: var(--tag-bg-hover); color: var(--ink); }
-  .modal-tag.active { background: var(--tag-active-bg); color: var(--tag-active-ink); }
-  .modal-nav {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 24px;
-    padding-top: 20px;
-    border-top: 1px solid var(--line-soft);
-  }
-  .modal-nav-btn {
-    border: 0;
-    background: transparent;
-    color: var(--muted);
-    cursor: pointer;
-    font-family: var(--sans);
-    font-size: 13px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    transition: color 0.2s;
-    padding: 4px 0;
-  }
-  .modal-nav-btn:hover:not(:disabled) { color: var(--accent); }
-  .modal-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
-
-  mark {
-    background: color-mix(in srgb, var(--accent) 25%, transparent);
-    color: inherit;
-    padding: 0 2px;
-    border-radius: 2px;
-  }
-
-  .empty, .loading {
-    text-align: center;
-    padding: 80px 20px;
-    color: var(--muted);
-  }
-  .empty h3 {
-    font-family: var(--serif);
-    font-style: italic;
-    font-weight: 400;
-    font-size: 22px;
-    color: var(--ink);
-    margin-bottom: 8px;
-  }
-
-  footer {
-    text-align: center;
-    padding: 40px 24px 56px;
-    border-top: 1px solid var(--line);
-    color: var(--muted);
-    font-size: 12px;
-  }
-  footer .signature {
-    font-family: var(--serif);
-    font-style: italic;
-    font-size: 16px;
-    color: var(--ink);
-    margin-bottom: 6px;
-  }
-  footer a {
-    color: var(--accent);
-    text-decoration: none;
-    border-bottom: 1px solid transparent;
-    transition: border-color 0.2s;
-  }
-  footer a:hover { border-bottom-color: var(--accent); }
-
-  @media (max-width: 600px) {
-    .site-header { padding: 40px 20px 24px; }
-    .controls-wrap { padding: 12px 16px; }
-    .controls { gap: 10px; }
-    main { padding: 20px 16px 60px; }
-    .day-header .date { font-size: 22px; }
-    .grid { grid-template-columns: 1fr; gap: 8px; }
-    .modal-body { padding: 22px 22px 28px; }
-    .modal-img { max-height: 240px; }
-  }
+:root{--bg:#f5f1ea;--bg-secondary:#ebe5da;--surface:#fefcf7;--ink:#1a1a1a;--ink-soft:#3d3a35;--muted:#847d72;--line:#d8d0c0;--line-soft:#e8e2d4;--accent:#8b5a2b;--accent-soft:#d4a574;--gen-bg:#ecf0e8;--gen-ink:#4a6741;--it-bg:#efe6e0;--it-ink:#7c4a2d;--tag-bg:rgba(26,26,26,0.05);--tag-bg-hover:rgba(26,26,26,0.1);--tag-active-bg:#1a1a1a;--tag-active-ink:#f5f1ea;--shadow-sm:0 1px 2px rgba(60,40,20,0.04);--shadow-md:0 2px 8px rgba(60,40,20,0.06),0 12px 24px rgba(60,40,20,0.04);--shadow-xl:0 20px 60px rgba(60,40,20,0.18),0 4px 14px rgba(60,40,20,0.08);--serif:'Fraunces','Noto Serif JP',Georgia,'Hiragino Mincho ProN',serif;--sans:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif}
+@media (prefers-color-scheme:dark){:root{--bg:#14130f;--bg-secondary:#1c1a16;--surface:#1f1d18;--ink:#f0ece4;--ink-soft:#d1cbbe;--muted:#8c8576;--line:#2e2b25;--line-soft:#25231e;--accent:#c89968;--accent-soft:#8b6a3f;--gen-bg:#1f2a1c;--gen-ink:#a8c39c;--it-bg:#2a1f1a;--it-ink:#d4a07a;--tag-bg:rgba(240,236,228,0.06);--tag-bg-hover:rgba(240,236,228,0.12);--tag-active-bg:#f0ece4;--tag-active-ink:#14130f;--shadow-sm:0 1px 2px rgba(0,0,0,0.3);--shadow-md:0 2px 8px rgba(0,0,0,0.4),0 12px 24px rgba(0,0,0,0.3);--shadow-xl:0 20px 60px rgba(0,0,0,0.6),0 4px 14px rgba(0,0,0,0.4)}.modal-close{background:rgba(20,20,20,0.7)!important}}
+*{box-sizing:border-box;margin:0;padding:0}html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
+body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px;letter-spacing:.005em}
+body.modal-open{overflow:hidden}
+.site-header{padding:56px 24px 32px;text-align:center;border-bottom:1px solid var(--line);position:relative}
+.site-header::after{content:'';position:absolute;left:50%;bottom:-1px;width:60px;height:1px;background:var(--accent);transform:translateX(-50%)}
+.site-header .eyebrow{text-transform:uppercase;letter-spacing:.25em;font-size:11px;color:var(--muted);margin-bottom:14px;font-weight:500}
+.site-header h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,56px);letter-spacing:-.02em;line-height:1.1}
+.site-header h1 em{font-style:italic;font-weight:300;color:var(--accent)}
+.site-header .tagline{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--muted);margin-top:14px;font-size:16px}
+.controls-wrap{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft);z-index:50;padding:16px 24px}
+.controls{max-width:1180px;margin:0 auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
+.search-input{flex:1 1 260px;padding:11px 16px 11px 42px;border:1px solid var(--line);border-radius:100px;background:var(--surface);color:var(--ink);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23847d72' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:16px center}
+.search-input:focus{border-color:var(--accent);box-shadow:0 0 0 3px color-mix(in srgb,var(--accent) 15%,transparent)}
+.filter-segment{display:inline-flex;background:var(--surface);border:1px solid var(--line);border-radius:100px;padding:3px}
+.seg-btn{border:0;background:transparent;padding:8px 16px;border-radius:100px;font-family:var(--sans);font-size:13px;font-weight:500;color:var(--muted);cursor:pointer;transition:all .2s}
+.seg-btn:hover{color:var(--ink)}.seg-btn.active{background:var(--ink);color:var(--bg)}
+.tag-toggle{border:1px solid var(--line);background:var(--surface);color:var(--ink-soft);padding:10px 16px;border-radius:100px;font-family:var(--sans);font-size:13px;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:6px;transition:all .2s}
+.tag-toggle:hover{border-color:var(--accent);color:var(--accent)}.tag-toggle .chev{width:12px;height:12px;transition:transform .25s}.tag-toggle.open .chev{transform:rotate(180deg)}
+.tag-toggle .count{background:var(--accent);color:white;padding:1px 7px;border-radius:100px;font-size:11px;margin-left:2px}
+.tag-panel{max-width:1180px;margin:0 auto;padding:0 24px;max-height:0;overflow:hidden;transition:max-height .3s ease,padding .3s ease}
+.tag-panel.open{max-height:600px;padding:16px 24px 20px;overflow-y:auto}
+.tag-chips{display:flex;flex-wrap:wrap;gap:6px}
+.tag-chip{border:0;background:var(--tag-bg);color:var(--ink-soft);padding:6px 12px;border-radius:100px;font-family:var(--sans);font-size:12px;cursor:pointer;transition:all .15s}
+.tag-chip:hover{background:var(--tag-bg-hover)}.tag-chip.active{background:var(--tag-active-bg);color:var(--tag-active-ink)}
+.clear-tags{border:0;background:transparent;color:var(--accent);padding:6px 0;margin-left:6px;font-family:var(--sans);font-size:12px;cursor:pointer;text-decoration:underline;text-underline-offset:3px}
+main{max-width:1180px;margin:0 auto;padding:28px 24px 80px}
+.stats{font-family:var(--serif);font-style:italic;color:var(--muted);font-size:14px;margin-bottom:32px;text-align:center}
+.day-section{margin-bottom:48px}
+.day-header{display:flex;align-items:baseline;gap:16px;margin-bottom:20px;padding-bottom:12px;border-bottom:1px solid var(--line)}
+.day-header .date{font-family:var(--serif);font-size:26px;font-weight:400;letter-spacing:-.01em}
+.day-header .date .num{font-variant-numeric:tabular-nums;font-style:italic;color:var(--accent);font-weight:300}
+.day-header .relative{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:.15em}
+.relay-label{font-size:11px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin:20px 0 12px;display:flex;align-items:center;gap:12px}
+.relay-label::after{content:'';flex:1;height:1px;background:var(--line-soft)}
+.relay-label .dot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
+.relay-label.it .dot{background:var(--it-ink)}.relay-label.gen .dot{background:var(--gen-ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:10px}
+.card{background:var(--surface);border:1px solid var(--line-soft);border-radius:12px;padding:14px 16px 14px 18px;cursor:pointer;display:flex;align-items:center;gap:12px;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;position:relative;text-align:left;overflow:hidden}
+.card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--accent);opacity:0;transition:opacity .2s}
+.card.general::before{background:var(--gen-ink)}.card.it::before{background:var(--it-ink)}
+.card:hover{transform:translateY(-1px);border-color:var(--line);box-shadow:var(--shadow-md)}
+.card:hover::before{opacity:1}
+.card-num{flex:0 0 auto;font-family:var(--serif);font-style:italic;font-weight:300;font-size:18px;color:var(--muted);width:22px;text-align:center;font-variant-numeric:tabular-nums}
+.card-title{flex:1;font-family:var(--serif);font-weight:500;font-size:15px;line-height:1.4;letter-spacing:-.005em;color:var(--ink);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.card-icon{flex:0 0 auto;color:var(--muted);opacity:0;transition:opacity .2s,transform .2s}
+.card:hover .card-icon{opacity:.6;transform:translateX(2px)}
+.card-has-img{flex:0 0 auto;width:6px;height:6px;border-radius:50%;background:var(--accent-soft);opacity:.5}
+.modal-backdrop{position:fixed;inset:0;background:rgba(20,15,10,0.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:100;opacity:0;pointer-events:none;transition:opacity .25s ease;display:flex;align-items:center;justify-content:center;padding:24px}
+.modal-backdrop.open{opacity:1;pointer-events:auto}
+.modal{background:var(--surface);border-radius:18px;max-width:720px;width:100%;max-height:90vh;overflow-y:auto;box-shadow:var(--shadow-xl);transform:translateY(20px) scale(.97);opacity:0;transition:transform .3s cubic-bezier(.2,.9,.3,1.1),opacity .2s ease;position:relative}
+.modal-backdrop.open .modal{transform:translateY(0) scale(1);opacity:1}
+.modal-close{position:absolute;top:14px;right:14px;width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,0.85);border:1px solid var(--line-soft);color:var(--ink);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:5;backdrop-filter:blur(8px)}
+.modal-close:hover{background:var(--ink);color:var(--bg);border-color:var(--ink)}
+.modal-img{width:100%;max-height:320px;object-fit:cover;background:var(--bg-secondary);display:block}
+.modal-body{padding:28px 36px 36px}
+.modal-meta{display:flex;align-items:center;gap:10px;margin-bottom:12px;flex-wrap:wrap}
+.cat-badge{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.15em;padding:4px 10px;border-radius:4px}
+.cat-badge.general{background:var(--gen-bg);color:var(--gen-ink)}.cat-badge.it{background:var(--it-bg);color:var(--it-ink)}
+.modal-date{font-family:var(--serif);font-size:13px;color:var(--muted);font-style:italic}
+.modal-news{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted);border-left:2px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 16px}
+.modal-news::before{content:'起点: ';opacity:.7}
+.modal-title{font-family:var(--serif);font-weight:500;font-size:clamp(24px,4vw,32px);line-height:1.25;letter-spacing:-.015em;margin-bottom:18px}
+.modal-text{font-family:var(--sans);font-size:15px;line-height:1.85;color:var(--ink-soft);white-space:pre-wrap;word-break:break-word}
+.modal-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:24px;padding-top:20px;border-top:1px solid var(--line-soft)}
+.modal-tag{border:0;background:var(--tag-bg);color:var(--ink-soft);padding:5px 11px;border-radius:100px;font-family:var(--sans);font-size:12px;cursor:pointer;transition:all .15s}
+.modal-tag:hover{background:var(--tag-bg-hover);color:var(--ink)}.modal-tag.active{background:var(--tag-active-bg);color:var(--tag-active-ink)}
+.modal-nav{display:flex;justify-content:space-between;margin-top:24px;padding-top:20px;border-top:1px solid var(--line-soft)}
+.modal-nav-btn{border:0;background:transparent;color:var(--muted);cursor:pointer;font-family:var(--sans);font-size:13px;display:flex;align-items:center;gap:6px;transition:color .2s;padding:4px 0}
+.modal-nav-btn:hover:not(:disabled){color:var(--accent)}.modal-nav-btn:disabled{opacity:.3;cursor:not-allowed}
+mark{background:color-mix(in srgb,var(--accent) 25%,transparent);color:inherit;padding:0 2px;border-radius:2px}
+.empty,.loading{text-align:center;padding:80px 20px;color:var(--muted)}
+.empty h3{font-family:var(--serif);font-style:italic;font-weight:400;font-size:22px;color:var(--ink);margin-bottom:8px}
+footer{text-align:center;padding:40px 24px 56px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}
+footer .signature{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--ink);margin-bottom:6px}
+footer a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
+footer a:hover{border-bottom-color:var(--accent)}
+@media (max-width:600px){.site-header{padding:40px 20px 24px}.controls-wrap{padding:12px 16px}.controls{gap:10px}main{padding:20px 16px 60px}.day-header .date{font-size:22px}.grid{grid-template-columns:1fr;gap:8px}.modal-body{padding:22px 22px 28px}.modal-img{max-height:240px}}
 </style>
 </head>
 <body>
-
-<header class="site-header">
-  <div class="eyebrow">Daily Trivia Archive</div>
-  <h1>毎日の<em>雑学</em>リレー</h1>
-  <p class="tagline">— 今日のニュースから、明日の話のタネへ。</p>
-</header>
-
-<div class="controls-wrap">
-  <div class="controls">
-    <input id="search" class="search-input" type="search" placeholder="検索（例：AWS、徳川、Linus、ナポレオン...）" autocomplete="off">
-    <div class="filter-segment" id="catFilter">
-      <button class="seg-btn active" data-filter="all">すべて</button>
-      <button class="seg-btn" data-filter="general">一般</button>
-      <button class="seg-btn" data-filter="it">IT</button>
-    </div>
-    <button class="tag-toggle" id="tagToggle">
-      タグ <span class="count" id="activeTagCount" style="display:none">0</span>
-      <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-    </button>
-  </div>
-  <div class="tag-panel" id="tagPanel">
-    <div class="tag-chips" id="tagChips"></div>
-  </div>
-</div>
-
-<main>
-  <div id="stats" class="stats"></div>
-  <div id="content"><div class="loading">読み込み中…</div></div>
-</main>
-
-<footer>
-  <div class="signature">— Curated daily by Cowork —</div>
-  Powered by Cowork × GitHub Pages ・
-  <a href="https://github.com/zerofdy/daily-trivia" target="_blank" rel="noopener">View source</a>
-</footer>
-
-<!-- Modal -->
-<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
-  <div class="modal" id="modal">
-    <button class="modal-close" id="modalClose" aria-label="閉じる">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-    </button>
-    <div id="modalContent"></div>
-  </div>
-</div>
-
+<header class="site-header"><div class="eyebrow">Daily Trivia Archive</div><h1>毎日の<em>雑学</em>リレー</h1><p class="tagline">— 今日のニュースから、明日の話のタネへ。</p></header>
+<div class="controls-wrap"><div class="controls"><input id="search" class="search-input" type="search" placeholder="検索（例：AWS、徳川、Linus、ナポレオン...）" autocomplete="off"><div class="filter-segment" id="catFilter"><button class="seg-btn active" data-filter="all">すべて</button><button class="seg-btn" data-filter="general">一般</button><button class="seg-btn" data-filter="it">IT</button></div><button class="tag-toggle" id="tagToggle">タグ <span class="count" id="activeTagCount" style="display:none">0</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button></div><div class="tag-panel" id="tagPanel"><div class="tag-chips" id="tagChips"></div></div></div>
+<main><div id="stats" class="stats"></div><div id="content"><div class="loading">読み込み中…</div></div></main>
+<footer><div class="signature">— Curated daily by Cowork —</div>Powered by Cowork × GitHub Pages ・ <a href="https://github.com/zerofdy/daily-trivia" target="_blank" rel="noopener">View source</a></footer>
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true"><div class="modal" id="modal"><button class="modal-close" id="modalClose" aria-label="閉じる"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div id="modalContent"></div></div></div>
 <script>
-  const state = {
-    data: [],
-    filter: 'all',
-    query: '',
-    activeTags: new Set(),
-    allTags: new Map(),
-    flatList: [],  // [{date, category, topic, idx}] - all visible cards in order
-    currentIdx: -1,
-  };
-
-  async function load() {
-    try {
-      const res = await fetch('data.json?t=' + Date.now());
-      if (!res.ok) throw new Error('data.json not found');
-      const json = await res.json();
-      state.data = (json.entries || []).slice().sort((a, b) => b.date.localeCompare(a.date));
-      collectTags();
-      renderTagChips();
-      render();
-    } catch (e) {
-      document.getElementById('content').innerHTML =
-        '<div class="empty"><h3>まだ雑学がありません</h3><p>data.json が空か未配置です</p></div>';
-    }
-  }
-
-  function collectTags() {
-    const m = new Map();
-    for (const e of state.data) {
-      for (const t of [...(e.general || []), ...(e.it || [])]) {
-        for (const tag of (t.tags || [])) {
-          m.set(tag, (m.get(tag) || 0) + 1);
-        }
-      }
-    }
-    state.allTags = new Map([...m.entries()].sort((a, b) => b[1] - a[1] || a[0].localeCompare(b[0])));
-  }
-
-  function renderTagChips() {
-    const html = [...state.allTags.entries()].map(([tag, n]) =>
-      `<button class="tag-chip${state.activeTags.has(tag) ? ' active' : ''}" data-tag="${escapeAttr(tag)}">${escapeHtml(tag)} <span style="opacity:.5">${n}</span></button>`
-    ).join('');
-    const clear = state.activeTags.size
-      ? `<button class="clear-tags" id="clearTags">× クリア (${state.activeTags.size})</button>`
-      : '';
-    document.getElementById('tagChips').innerHTML = html + clear;
-    document.querySelectorAll('#tagChips .tag-chip').forEach(btn => {
-      btn.addEventListener('click', () => toggleTag(btn.dataset.tag));
-    });
-    const ct = document.getElementById('clearTags');
-    if (ct) ct.addEventListener('click', () => { state.activeTags.clear(); renderTagChips(); render(); updateTagCount(); });
-    updateTagCount();
-  }
-
-  function updateTagCount() {
-    const c = document.getElementById('activeTagCount');
-    if (state.activeTags.size > 0) { c.style.display = ''; c.textContent = state.activeTags.size; }
-    else c.style.display = 'none';
-  }
-
-  function toggleTag(tag) {
-    if (state.activeTags.has(tag)) state.activeTags.delete(tag);
-    else state.activeTags.add(tag);
-    renderTagChips();
-    render();
-    if (modalOpen()) renderModal();  // refresh active tags in modal
-  }
-
-  function escapeHtml(s) {
-    return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-  }
-  function escapeAttr(s) { return escapeHtml(s); }
-
-  function highlight(text, query) {
-    const safe = escapeHtml(text);
-    if (!query) return safe;
-    const re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
-    return safe.replace(re, '<mark>$1</mark>');
-  }
-
-  function formatDate(dateStr) {
-    const [y, m, d] = dateStr.split('-');
-    return `<span class="num">${y}</span>.<span class="num">${m}</span>.<span class="num">${d}</span>`;
-  }
-  function formatDatePlain(dateStr) {
-    const [y, m, d] = dateStr.split('-');
-    return `${y}.${m}.${d}`;
-  }
-
-  function relativeDate(dateStr) {
-    const d = new Date(dateStr + 'T00:00:00');
-    const today = new Date(); today.setHours(0,0,0,0);
-    const diff = Math.round((today - d) / 86400000);
-    if (diff === 0) return 'Today';
-    if (diff === 1) return 'Yesterday';
-    if (diff < 7) return diff + ' days ago';
-    if (diff < 30) return Math.floor(diff / 7) + ' weeks ago';
-    return Math.floor(diff / 30) + ' months ago';
-  }
-
-  function matchesFilters(topic, q) {
-    if (q) {
-      const hay = ((topic.title || '') + ' ' + (topic.body || '') + ' ' + (topic.tags || []).join(' ')).toLowerCase();
-      if (!hay.includes(q.toLowerCase())) return false;
-    }
-    if (state.activeTags.size > 0) {
-      const tagset = new Set(topic.tags || []);
-      for (const t of state.activeTags) {
-        if (!tagset.has(t)) return false;
-      }
-    }
-    return true;
-  }
-
-  function renderCard(topic, category, query, flatIdx, numInRelay) {
-    const cls = category === 'it' ? 'it' : 'general';
-    const hasImg = topic.image ? '<span class="card-has-img" title="画像あり"></span>' : '';
-    return `
-      <butt
+const state={data:[],filter:'all',query:'',activeTags:new Set(),allTags:new Map(),flatList:[],currentIdx:-1};
+async function load(){try{const res=await fetch('data.json?t='+Date.now());if(!res.ok)throw new Error('data.json not found');const json=await res.json();state.data=(json.entries||[]).slice().sort((a,b)=>b.date.localeCompare(a.date));collectTags();renderTagChips();render();}catch(e){document.getElementById('content').innerHTML='<div class="empty"><h3>まだ雑学がありません</h3><p>data.json が空か未配置です</p></div>';}}
+function collectTags(){const m=new Map();for(const e of state.data){for(const t of [...(e.general||[]),...(e.it||[])]){for(const tag of (t.tags||[])){m.set(tag,(m.get(tag)||0)+1);}}}state.allTags=new Map([...m.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])));}
+function renderTagChips(){const html=[...state.allTags.entries()].map(([tag,n])=>`<button class="tag-chip${state.activeTags.has(tag)?' active':''}" data-tag="${escapeAttr(tag)}">${escapeHtml(tag)} <span style="opacity:.5">${n}</span></button>`).join('');const clear=state.activeTags.size?`<button class="clear-tags" id="clearTags">× クリア (${state.activeTags.size})</button>`:'';document.getElementById('tagChips').innerHTML=html+clear;document.querySelectorAll('#tagChips .tag-chip').forEach(btn=>{btn.addEventListener('click',()=>toggleTag(btn.dataset.tag));});const ct=document.getElementById('clearTags');if(ct)ct.addEventListener('click',()=>{state.activeTags.clear();renderTagChips();render();updateTagCount();});updateTagCount();}
+function updateTagCount(){const c=document.getElementById('activeTagCount');if(state.activeTags.size>0){c.style.display='';c.textContent=state.activeTags.size;}else c.style.display='none';}
+function toggleTag(tag){if(state.activeTags.has(tag))state.activeTags.delete(tag);else state.activeTags.add(tag);renderTagChips();render();if(modalOpen())renderModal();}
+function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function escapeAttr(s){return escapeHtml(s);}
+function highlight(text,query){const safe=escapeHtml(text);if(!query)return safe;const re=new RegExp('('+query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');return safe.replace(re,'<mark>$1</mark>');}
+function formatDate(dateStr){const[y,m,d]=dateStr.split('-');return `<span class="num">${y}</span>.<span class="num">${m}</span>.<span class="num">${d}</span>`;}
+function formatDatePlain(dateStr){const[y,m,d]=dateStr.split('-');return `${y}.${m}.${d}`;}
+function relativeDate(dateStr){const d=new Date(dateStr+'T00:00:00');const today=new Date();today.setHours(0,0,0,0);const diff=Math.round((today-d)/86400000);if(diff===0)return 'Today';if(diff===1)return 'Yesterday';if(diff<7)return diff+' days ago';if(diff<30)return Math.floor(diff/7)+' weeks ago';return Math.floor(diff/30)+' months ago';}
+function matchesFilters(topic,q){if(q){const hay=((topic.title||'')+' '+(topic.body||'')+' '+(topic.tags||[]).join(' ')).toLowerCase();if(!hay.includes(q.toLowerCase()))return false;}if(state.activeTags.size>0){const tagset=new Set(topic.tags||[]);for(const t of state.activeTags){if(!tagset.has(t))return false;}}return true;}
+function renderCard(topic,category,query,flatIdx,numInRelay){const cls=category==='it'?'it':'general';const hasImg=topic.image?'<span class="card-has-img" title="画像あり"></span>':'';return `<button class="card ${cls}" data-idx="${flatIdx}"><span class="card-num">${numInRelay}</span><span class="card-title">${highlight(topic.title||'',query)}</span>${hasImg}<svg class="card-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button>`;}
+function render(){const q=state.query.trim();const content=document.getElementById('content');state.flatList=[];let totalDays=0;const html=state.data.map(entry=>{const sections=[];if(state.filter==='all'||state.filter==='general'){const matched=(entry.general||[]).filter(t=>matchesFilters(t,q));if(matched.length){const cards=matched.map((t,i)=>{const idx=state.flatList.length;state.flatList.push({date:entry.date,category:'general',topic:t});return renderCard(t,'general',q,idx,i+1);}).join('');sections.push(`<div class="relay-label gen"><span class="dot"></span>一般雑学リレー</div><div class="grid">${cards}</div>`);}}if(state.filter==='all'||state.filter==='it'){const matched=(entry.it||[]).filter(t=>matchesFilters(t,q));if(matched.length){const cards=matched.map((t,i)=>{const idx=state.flatList.length;state.flatList.push({date:entry.date,category:'it',topic:t});return renderCard(t,'it',q,idx,i+1);}).join('');sections.push(`<div class="relay-label it"><span class="dot"></span>IT／クラウド雑学リレー</div><div class="grid">${cards}</div>`);}}if(!sections.length)return '';totalDays++;return `<section class="day-section"><div class="day-header"><span class="date">${formatDate(entry.date)}</span><span class="relative">${relativeDate(entry.date)}</span></div>${sections.join('')}</section>`;}).filter(Boolean).join('');const totalCards=state.flatList.length;const filters=[];if(q)filters.push(`「${escapeHtml(q)}」で検索`);if(state.activeTags.size)filters.push(`タグ: ${[...state.activeTags].join(', ')}`);const filterStr=filters.length?`（${filters.join(' / ')}）`:'';document.getElementById('stats').innerHTML=`<span>${totalDays} 日分・${totalCards} トピック</span>${filterStr}`;content.innerHTML=html||'<div class="empty"><h3>該当する雑学が見つかりませんでした</h3><p>検索条件やタグを変えてみてください</p></div>';document.querySelectorAll('.card').forEach(btn=>{btn.addEventListener('click',()=>openModal(parseInt(btn.dataset.idx,10)));});}
+const backdrop=document.getElementById('modalBackdrop');const modalContent=document.getElementById('modalContent');
+function modalOpen(){return backdrop.classList.contains('open');}
+function openModal(idx){state.currentIdx=idx;renderModal();backdrop.classList.add('open');backdrop.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');}
+function closeModal(){backdrop.classList.remove('open');backdrop.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');state.currentIdx=-1;}
+function navModal(delta){const next=state.currentIdx+delta;if(next<0||next>=state.flatList.length)return;state.currentIdx=next;renderModal();document.getElementById('modal').scrollTop=0;}
+function renderModal(){const item=state.flatList[state.currentIdx];if(!item)return;const{date,category,topic}=item;const cls=category==='it'?'it':'general';const label=category==='it'?'IT／クラウド':'一般';const img=topic.image?`<img class="modal-img" src="${escapeAttr(topic.image)}" alt="" onerror="this.style.display='none'">`:'';const news=topic.newsSource?`<p class="modal-news">${escapeHtml(topic.newsSource)}</p>`:'';const tags=(topic.tags||[]).map(t=>`<button class="modal-tag${state.activeTags.has(t)?' active':''}" data-tag="${escapeAttr(t)}">${escapeHtml(t)}</button>`).join('');const prevDisabled=state.currentIdx<=0?'disabled':'';const nextDisabled=state.currentIdx>=state.flatList.length-1?'disabled':'';modalContent.innerHTML=`${img}<div class="modal-body"><div class="modal-meta"><span class="cat-badge ${cls}">${label}</span><span class="modal-date">${formatDatePlain(date)}</span></div>${news}<h2 class="modal-title">${escapeHtml(topic.title||'')}</h2><p class="modal-text">${escapeHtml(topic.body||'')}</p>${tags?`<div class="modal-tags">${tags}</div>`:''}<div class="modal-nav"><button class="modal-nav-btn" id="prevBtn" ${prevDisabled}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>前のトピック</button><button class="modal-nav-btn" id="nextBtn" ${nextDisabled}>次のトピック<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button></div></div>`;modalContent.querySelectorAll('.modal-tag').forEach(btn=>{btn.addEventListener('click',(e)=>{e.stopPropagation();toggleTag(btn.dataset.tag);});});const pb=document.getElementById('prevBtn');const nb=document.getElementById('nextBtn');if(pb)pb.addEventListener('click',()=>navModal(-1));if(nb)nb.addEventListener('click',()=>navModal(1));}
+backdrop.addEventListener('click',(e)=>{if(e.target===backdrop)closeModal();});
+document.getElementById('modalClose').addEventListener('click',closeModal);
+document.addEventListener('keydown',(e)=>{if(!modalOpen())return;if(e.key==='Escape')closeModal();else if(e.key==='ArrowLeft')navModal(-1);else if(e.key==='ArrowRight')navModal(1);});
+document.getElementById('search').addEventListener('input',e=>{state.query=e.target.value;render();});
+document.querySelectorAll('#catFilter .seg-btn').forEach(btn=>{btn.addEventListener('click',()=>{document.querySelectorAll('#catFilter .seg-btn').forEach(b=>b.classList.remove('active'));btn.classList.add('active');state.filter=btn.dataset.filter;render();});});
+const tagToggle=document.getElementById('tagToggle');tagToggle.addEventListener('click',()=>{tagToggle.classList.toggle('open');document.getElementById('tagPanel').classList.toggle('open');});
+load();
+</script>
+</body>
+</html>
