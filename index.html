@@ -38,6 +38,7 @@
     --tag-active-ink: #f5f1ea;
     --shadow-sm: 0 1px 2px rgba(60,40,20,0.04);
     --shadow-md: 0 2px 8px rgba(60,40,20,0.06), 0 12px 24px rgba(60,40,20,0.04);
+    --shadow-xl: 0 20px 60px rgba(60,40,20,0.18), 0 4px 14px rgba(60,40,20,0.08);
     --serif: 'Fraunces', 'Noto Serif JP', Georgia, 'Hiragino Mincho ProN', serif;
     --sans: 'Inter', 'Noto Sans JP', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
@@ -63,6 +64,7 @@
       --tag-active-ink: #14130f;
       --shadow-sm: 0 1px 2px rgba(0,0,0,0.3);
       --shadow-md: 0 2px 8px rgba(0,0,0,0.4), 0 12px 24px rgba(0,0,0,0.3);
+      --shadow-xl: 0 20px 60px rgba(0,0,0,0.6), 0 4px 14px rgba(0,0,0,0.4);
     }
   }
   * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -75,6 +77,8 @@
     font-size: 15px;
     letter-spacing: 0.005em;
   }
+  body.modal-open { overflow: hidden; }
+
   .site-header {
     padding: 56px 24px 32px;
     text-align: center;
@@ -90,7 +94,6 @@
     transform: translateX(-50%);
   }
   .site-header .eyebrow {
-    font-family: var(--sans);
     text-transform: uppercase;
     letter-spacing: 0.25em;
     font-size: 11px;
@@ -104,7 +107,6 @@
     font-size: clamp(36px, 6vw, 56px);
     letter-spacing: -0.02em;
     line-height: 1.1;
-    color: var(--ink);
   }
   .site-header h1 em {
     font-style: italic;
@@ -119,6 +121,7 @@
     margin-top: 14px;
     font-size: 16px;
   }
+
   .controls-wrap {
     position: sticky;
     top: 0;
@@ -220,6 +223,7 @@
   .tag-panel.open {
     max-height: 600px;
     padding: 16px 24px 20px;
+    overflow-y: auto;
   }
   .tag-chips {
     display: flex;
@@ -254,6 +258,7 @@
     text-decoration: underline;
     text-underline-offset: 3px;
   }
+
   main {
     max-width: 1180px;
     margin: 0 auto;
@@ -267,21 +272,21 @@
     margin-bottom: 32px;
     text-align: center;
   }
-  .day-section { margin-bottom: 56px; }
+
+  .day-section { margin-bottom: 48px; }
   .day-header {
     display: flex;
     align-items: baseline;
     gap: 16px;
-    margin-bottom: 24px;
-    padding-bottom: 14px;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
     border-bottom: 1px solid var(--line);
   }
   .day-header .date {
     font-family: var(--serif);
-    font-size: 28px;
+    font-size: 26px;
     font-weight: 400;
     letter-spacing: -0.01em;
-    color: var(--ink);
   }
   .day-header .date .num {
     font-variant-numeric: tabular-nums;
@@ -290,20 +295,18 @@
     font-weight: 300;
   }
   .day-header .relative {
-    font-family: var(--sans);
-    font-size: 12px;
+    font-size: 11px;
     color: var(--muted);
     text-transform: uppercase;
     letter-spacing: 0.15em;
   }
   .relay-label {
-    font-family: var(--sans);
     font-size: 11px;
     font-weight: 600;
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--muted);
-    margin: 24px 0 14px;
+    margin: 20px 0 12px;
     display: flex;
     align-items: center;
     gap: 12px;
@@ -321,60 +324,163 @@
   }
   .relay-label.it .dot { background: var(--it-ink); }
   .relay-label.gen .dot { background: var(--gen-ink); }
+
+  /* ===== Compact title-only cards ===== */
   .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 10px;
   }
   .card {
     background: var(--surface);
     border: 1px solid var(--line-soft);
-    border-radius: 16px;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
-    box-shadow: var(--shadow-sm);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-    position: relative;
-  }
-  .card:hover {
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-md);
-    border-color: var(--line);
-  }
-  .card-img {
-    position: relative;
-    width: 100%;
-    height: 180px;
-    background: linear-gradient(135deg, var(--bg-secondary), var(--line-soft));
-    overflow: hidden;
-  }
-  .card-img img {
-    width: 100%; height: 100%;
-    object-fit: cover;
-    transition: transform 0.6s ease;
-  }
-  .card:hover .card-img img { transform: scale(1.04); }
-  .card-img.no-image {
-    height: 6px;
-  }
-  .card-img.no-image.it { background: linear-gradient(90deg, var(--it-ink), transparent); }
-  .card-img.no-image.general { background: linear-gradient(90deg, var(--gen-ink), transparent); }
-  .card-body {
-    padding: 20px 22px 22px;
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-    flex: 1;
-  }
-  .card-meta {
+    border-radius: 12px;
+    padding: 14px 16px 14px 18px;
+    cursor: pointer;
     display: flex;
     align-items: center;
-    gap: 8px;
+    gap: 12px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    position: relative;
+    text-align: left;
+    overflow: hidden;
+  }
+  .card::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    width: 3px;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+  .card.general::before { background: var(--gen-ink); }
+  .card.it::before { background: var(--it-ink); }
+  .card:hover {
+    transform: translateY(-1px);
+    border-color: var(--line);
+    box-shadow: var(--shadow-md);
+  }
+  .card:hover::before { opacity: 1; }
+  .card-num {
+    flex: 0 0 auto;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 18px;
+    color: var(--muted);
+    width: 22px;
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+  .card-title {
+    flex: 1;
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: 15px;
+    line-height: 1.4;
+    letter-spacing: -0.005em;
+    color: var(--ink);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+  .card-icon {
+    flex: 0 0 auto;
+    color: var(--muted);
+    opacity: 0;
+    transition: opacity 0.2s, transform 0.2s;
+  }
+  .card:hover .card-icon { opacity: 0.6; transform: translateX(2px); }
+  .card-has-img {
+    flex: 0 0 auto;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: var(--accent-soft);
+    opacity: 0.5;
+  }
+
+  /* ===== Modal ===== */
+  .modal-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(20,15,10,0.55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 100;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+  }
+  .modal-backdrop.open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+  .modal {
+    background: var(--surface);
+    border-radius: 18px;
+    max-width: 720px;
+    width: 100%;
+    max-height: 90vh;
+    overflow-y: auto;
+    box-shadow: var(--shadow-xl);
+    transform: translateY(20px) scale(0.97);
+    opacity: 0;
+    transition: transform 0.3s cubic-bezier(0.2, 0.9, 0.3, 1.1), opacity 0.2s ease;
+    position: relative;
+  }
+  .modal-backdrop.open .modal {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+  .modal-close {
+    position: absolute;
+    top: 14px; right: 14px;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.85);
+    border: 1px solid var(--line-soft);
+    color: var(--ink);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    z-index: 5;
+    backdrop-filter: blur(8px);
+  }
+  @media (prefers-color-scheme: dark) {
+    .modal-close { background: rgba(20,20,20,0.7); }
+  }
+  .modal-close:hover {
+    background: var(--ink);
+    color: var(--bg);
+    border-color: var(--ink);
+  }
+  .modal-img {
+    width: 100%;
+    max-height: 320px;
+    object-fit: cover;
+    background: var(--bg-secondary);
+    display: block;
+  }
+  .modal-body {
+    padding: 28px 36px 36px;
+  }
+  .modal-meta {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
     flex-wrap: wrap;
   }
   .cat-badge {
-    font-family: var(--sans);
     font-size: 10px;
     font-weight: 600;
     text-transform: uppercase;
@@ -384,58 +490,90 @@
   }
   .cat-badge.general { background: var(--gen-bg); color: var(--gen-ink); }
   .cat-badge.it { background: var(--it-bg); color: var(--it-ink); }
-  .news-src {
+  .modal-date {
+    font-family: var(--serif);
+    font-size: 13px;
+    color: var(--muted);
+    font-style: italic;
+  }
+  .modal-news {
     font-family: var(--serif);
     font-style: italic;
-    font-size: 12px;
+    font-size: 13px;
     color: var(--muted);
     border-left: 2px solid var(--accent);
-    padding-left: 8px;
-    margin-top: 4px;
+    padding: 4px 0 4px 12px;
+    margin: 12px 0 16px;
   }
-  .news-src::before { content: '起点: '; opacity: 0.7; }
-  .card-title {
+  .modal-news::before { content: '起点: '; opacity: 0.7; }
+  .modal-title {
     font-family: var(--serif);
     font-weight: 500;
-    font-size: 19px;
-    line-height: 1.35;
-    letter-spacing: -0.01em;
+    font-size: clamp(24px, 4vw, 32px);
+    line-height: 1.25;
+    letter-spacing: -0.015em;
+    margin-bottom: 18px;
     color: var(--ink);
   }
-  .card-text {
+  .modal-text {
     font-family: var(--sans);
-    font-size: 14px;
-    line-height: 1.75;
+    font-size: 15px;
+    line-height: 1.85;
     color: var(--ink-soft);
-    flex: 1;
+    white-space: pre-wrap;
+    word-break: break-word;
   }
-  .card-tags {
+  .modal-tags {
     display: flex;
     flex-wrap: wrap;
-    gap: 5px;
-    margin-top: 4px;
-    padding-top: 14px;
-    border-top: 1px dashed var(--line-soft);
+    gap: 6px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line-soft);
   }
-  .card-tag {
-    font-family: var(--sans);
-    font-size: 11px;
-    color: var(--muted);
+  .modal-tag {
+    border: 0;
     background: var(--tag-bg);
-    padding: 3px 9px;
+    color: var(--ink-soft);
+    padding: 5px 11px;
     border-radius: 100px;
+    font-family: var(--sans);
+    font-size: 12px;
     cursor: pointer;
     transition: all 0.15s;
-    border: 0;
   }
-  .card-tag:hover { background: var(--tag-bg-hover); color: var(--ink); }
-  .card-tag.active { background: var(--tag-active-bg); color: var(--tag-active-ink); }
+  .modal-tag:hover { background: var(--tag-bg-hover); color: var(--ink); }
+  .modal-tag.active { background: var(--tag-active-bg); color: var(--tag-active-ink); }
+  .modal-nav {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid var(--line-soft);
+  }
+  .modal-nav-btn {
+    border: 0;
+    background: transparent;
+    color: var(--muted);
+    cursor: pointer;
+    font-family: var(--sans);
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    transition: color 0.2s;
+    padding: 4px 0;
+  }
+  .modal-nav-btn:hover:not(:disabled) { color: var(--accent); }
+  .modal-nav-btn:disabled { opacity: 0.3; cursor: not-allowed; }
+
   mark {
     background: color-mix(in srgb, var(--accent) 25%, transparent);
     color: inherit;
     padding: 0 2px;
     border-radius: 2px;
   }
+
   .empty, .loading {
     text-align: center;
     padding: 80px 20px;
@@ -449,17 +587,13 @@
     color: var(--ink);
     margin-bottom: 8px;
   }
-  .empty p {
-    font-family: var(--sans);
-    font-size: 14px;
-  }
+
   footer {
     text-align: center;
     padding: 40px 24px 56px;
     border-top: 1px solid var(--line);
     color: var(--muted);
     font-size: 12px;
-    font-family: var(--sans);
   }
   footer .signature {
     font-family: var(--serif);
@@ -475,15 +609,16 @@
     transition: border-color 0.2s;
   }
   footer a:hover { border-bottom-color: var(--accent); }
+
   @media (max-width: 600px) {
     .site-header { padding: 40px 20px 24px; }
     .controls-wrap { padding: 12px 16px; }
     .controls { gap: 10px; }
     main { padding: 20px 16px 60px; }
-    .day-header { gap: 12px; }
     .day-header .date { font-size: 22px; }
-    .grid { grid-template-columns: 1fr; gap: 16px; }
-    .card-body { padding: 16px 18px 18px; }
+    .grid { grid-template-columns: 1fr; gap: 8px; }
+    .modal-body { padding: 22px 22px 28px; }
+    .modal-img { max-height: 240px; }
   }
 </style>
 </head>
@@ -524,6 +659,16 @@
   <a href="https://github.com/zerofdy/daily-trivia" target="_blank" rel="noopener">View source</a>
 </footer>
 
+<!-- Modal -->
+<div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal" id="modal">
+    <button class="modal-close" id="modalClose" aria-label="閉じる">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+    </button>
+    <div id="modalContent"></div>
+  </div>
+</div>
+
 <script>
   const state = {
     data: [],
@@ -531,6 +676,8 @@
     query: '',
     activeTags: new Set(),
     allTags: new Map(),
+    flatList: [],  // [{date, category, topic, idx}] - all visible cards in order
+    currentIdx: -1,
   };
 
   async function load() {
@@ -587,6 +734,7 @@
     else state.activeTags.add(tag);
     renderTagChips();
     render();
+    if (modalOpen()) renderModal();  // refresh active tags in modal
   }
 
   function escapeHtml(s) {
@@ -604,6 +752,10 @@
   function formatDate(dateStr) {
     const [y, m, d] = dateStr.split('-');
     return `<span class="num">${y}</span>.<span class="num">${m}</span>.<span class="num">${d}</span>`;
+  }
+  function formatDatePlain(dateStr) {
+    const [y, m, d] = dateStr.split('-');
+    return `${y}.${m}.${d}`;
   }
 
   function relativeDate(dateStr) {
@@ -631,102 +783,8 @@
     return true;
   }
 
-  function renderCard(topic, category, query) {
+  function renderCard(topic, category, query, flatIdx, numInRelay) {
     const cls = category === 'it' ? 'it' : 'general';
-    const label = category === 'it' ? 'IT' : '一般';
-    const img = topic.image
-      ? `<div class="card-img"><img src="${escapeAttr(topic.image)}" alt="" loading="lazy" onerror="this.parentElement.outerHTML='<div class=\\'card-img no-image ${cls}\\'></div>'"></div>`
-      : `<div class="card-img no-image ${cls}"></div>`;
-    const news = topic.newsSource
-      ? `<p class="news-src">${escapeHtml(topic.newsSource)}</p>`
-      : '';
-    const tags = (topic.tags || []).map(t =>
-      `<button class="card-tag${state.activeTags.has(t) ? ' active' : ''}" data-tag="${escapeAttr(t)}">${escapeHtml(t)}</button>`
-    ).join('');
+    const hasImg = topic.image ? '<span class="card-has-img" title="画像あり"></span>' : '';
     return `
-      <article class="card">
-        ${img}
-        <div class="card-body">
-          <div class="card-meta">
-            <span class="cat-badge ${cls}">${label}</span>
-          </div>
-          ${news}
-          <h3 class="card-title">${highlight(topic.title || '', query)}</h3>
-          <p class="card-text">${highlight(topic.body || '', query)}</p>
-          ${tags ? `<div class="card-tags">${tags}</div>` : ''}
-        </div>
-      </article>`;
-  }
-
-  function render() {
-    const q = state.query.trim();
-    const content = document.getElementById('content');
-    let totalCards = 0;
-    let totalDays = 0;
-    const html = state.data.map(entry => {
-      const sections = [];
-      if (state.filter === 'all' || state.filter === 'general') {
-        const matched = (entry.general || []).filter(t => matchesFilters(t, q));
-        if (matched.length) {
-          sections.push(`<div class="relay-label gen"><span class="dot"></span>一般雑学リレー</div>
-            <div class="grid">${matched.map(t => renderCard(t, 'general', q)).join('')}</div>`);
-          totalCards += matched.length;
-        }
-      }
-      if (state.filter === 'all' || state.filter === 'it') {
-        const matched = (entry.it || []).filter(t => matchesFilters(t, q));
-        if (matched.length) {
-          sections.push(`<div class="relay-label it"><span class="dot"></span>IT／クラウド雑学リレー</div>
-            <div class="grid">${matched.map(t => renderCard(t, 'it', q)).join('')}</div>`);
-          totalCards += matched.length;
-        }
-      }
-      if (!sections.length) return '';
-      totalDays++;
-      return `<section class="day-section">
-        <div class="day-header">
-          <span class="date">${formatDate(entry.date)}</span>
-          <span class="relative">${relativeDate(entry.date)}</span>
-        </div>
-        ${sections.join('')}
-      </section>`;
-    }).filter(Boolean).join('');
-
-    const filters = [];
-    if (q) filters.push(`「${escapeHtml(q)}」で検索`);
-    if (state.activeTags.size) filters.push(`タグ: ${[...state.activeTags].join(', ')}`);
-    const filterStr = filters.length ? `（${filters.join(' / ')}）` : '';
-    document.getElementById('stats').innerHTML =
-      `<span>${totalDays} 日分・${totalCards} トピック</span>${filterStr}`;
-    content.innerHTML = html || '<div class="empty"><h3>該当する雑学が見つかりませんでした</h3><p>検索条件やタグを変えてみてください</p></div>';
-
-    document.querySelectorAll('.card-tag').forEach(btn => {
-      btn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        toggleTag(btn.dataset.tag);
-      });
-    });
-  }
-
-  document.getElementById('search').addEventListener('input', e => {
-    state.query = e.target.value;
-    render();
-  });
-  document.querySelectorAll('#catFilter .seg-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('#catFilter .seg-btn').forEach(b => b.classList.remove('active'));
-      btn.classList.add('active');
-      state.filter = btn.dataset.filter;
-      render();
-    });
-  });
-  const tagToggle = document.getElementById('tagToggle');
-  tagToggle.addEventListener('click', () => {
-    tagToggle.classList.toggle('open');
-    document.getElementById('tagPanel').classList.toggle('open');
-  });
-
-  load();
-</script>
-</body>
-</html>
+      <butt
