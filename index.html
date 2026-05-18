@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Daily Trivia</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" type="image/png" sizes="64x64" href="favicon-64.png">
+<link rel="icon" type="image/png" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" sizes="192x192" href="icon-192.png">
+<link rel="apple-touch-icon" sizes="512x512" href="icon-512.png">
+<meta name="theme-color" content="#6b4cff">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Trivia">
+<meta name="mobile-web-app-capable" content="yes">
+<style>
+  :root {
+    --bg: #faf9f6;
+    --card: #ffffff;
+    --text: #1a1a1a;
+    --muted: #777;
+    --border: #e5e2db;
+    --accent: #6b4cff;
+    --tag-general: #e8f0fe;
+    --tag-general-text: #1a73e8;
+    --tag-it: #fce8e8;
+    --tag-it-text: #c5221f;
+    --shadow: 0 1px 3px rgba(0,0,0,0.05), 0 6px 18px rgba(0,0,0,0.04);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #16151a;
+      --card: #1f1e25;
+      --text: #ececec;
+      --muted: #999;
+      --border: #2c2b33;
+      --accent: #9d85ff;
+      --tag-general: #1c2c4a;
+      --tag-general-text: #8ab4f8;
+      --tag-it: #4a1c1c;
+      --tag-it-text: #f48b89;
+      --shadow: 0 1px 3px rgba(0,0,0,0.3), 0 6px 18px rgba(0,0,0,0.3);
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.65;
+  }
+  header {
+    padding: 32px 20px 16px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+  }
+  header h1 {
+    margin: 0 0 6px;
+    font-size: 28px;
+    letter-spacing: 0.02em;
+  }
+  header p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 14px;
+  }
+  .controls {
+    max-width: 1100px;
+    margin: 24px auto 16px;
+    padding: 0 20px;
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .search-input {
+    flex: 1 1 280px;
+    padding: 12px 16px;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 15px;
+    background: var(--card);
+    color: var(--text);
+    outline: none;
+    transition: border-color 0.15s;
+  }
+  .search-input:focus { border-color: var(--accent); }
+  .filter-group {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+  .chip {
+    padding: 10px 16px;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    background: var(--card);
+    color: var(--text);
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.15s;
+  }
+  .chip.active {
+    background: var(--accent);
+    color: white;
+    border-color: var(--accent);
+  }
+  .chip:hover:not(.active) { border-color: var(--accent); }
+  main {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 16px 20px 60px;
+  }
+  .stats {
+    color: var(--muted);
+    font-size: 13px;
+    margin: 8px 0 20px;
+  }
+  .day-section {
+    margin-bottom: 40px;
+  }
+  .day-header {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    margin: 0 0 14px;
+    padding-bottom: 8px;
+    border-bottom: 1px dashed var(--border);
+  }
+  .day-header h2 {
+    margin: 0;
+    font-size: 20px;
+  }
+  .day-header .relative {
+    color: var(--muted);
+    font-size: 13px;
+  }
+  .relay-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 18px 0 10px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 16px;
+  }
+  .card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.15s;
+  }
+  .card:hover { transform: translateY(-2px); }
+  .card img {
+    width: 100%;
+    height: 160px;
+    object-fit: cover;
+    background: #eee;
+  }
+  .card-body {
+    padding: 14px 16px 18px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+  .card-tag {
+    align-self: flex-start;
+    font-size: 11px;
+    padding: 3px 8px;
+    border-radius: 4px;
+    font-weight: 600;
+  }
+  .card-tag.general { background: var(--tag-general); color: var(--tag-general-text); }
+  .card-tag.it { background: var(--tag-it); color: var(--tag-it-text); }
+  .news-source {
+    font-size: 11px;
+    color: var(--muted);
+    background: rgba(0,0,0,0.04);
+    padding: 4px 8px;
+    border-radius: 4px;
+    border-left: 3px solid var(--accent);
+    margin: 0;
+  }
+  @media (prefers-color-scheme: dark) {
+    .news-source { background: rgba(255,255,255,0.04); }
+  }
+  .news-source::before { content: "📰 起点: "; opacity: 0.7; }
+  .card-title {
+    margin: 0;
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.4;
+  }
+  .card-text {
+    margin: 0;
+    font-size: 14px;
+    color: var(--text);
+    opacity: 0.9;
+    white-space: pre-wrap;
+    word-break: break-word;
+  }
+  .empty, .loading {
+    text-align: center;
+    padding: 60px 20px;
+    color: var(--muted);
+  }
+  mark {
+    background: rgba(155, 132, 255, 0.3);
+    color: inherit;
+    padding: 0 2px;
+    border-radius: 2px;
+  }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    padding: 24px 20px 40px;
+    border-top: 1px solid var(--border);
+  }
+  footer a { color: var(--accent); text-decoration: none; }
+</style>
+</head>
+<body>
+<header>
+  <h1>📚 Daily Trivia</h1>
+  <p>毎日の雑学リレー（一般＋IT/クラウド）アーカイブ</p>
+</header>
+
+<div class="controls">
+  <input id="search" class="search-input" type="search" placeholder="🔍 雑学・キーワードで検索（例：AWS、徳川、Linus...）" autocomplete="off">
+  <div class="filter-group" id="filters">
+    <button class="chip active" data-filter="all">すべて</button>
+    <button class="chip" data-filter="general">一般</button>
+    <button class="chip" data-filter="it">IT/クラウド</button>
+  </div>
+</div>
+
+<main>
+  <div id="stats" class="stats"></div>
+  <div id="content"><div class="loading">読み込み中…</div></div>
+</main>
+
+<footer>
+  Powered by Cowork × GitHub Pages ・ <a href="https://github.com/zerofdy/daily-trivia" target="_blank" rel="noopener">Source</a>
+</footer>
+
+<script>
+  const state = { data: [], filter: 'all', query: '' };
+
+  async function load() {
+    try {
+      const res = await fetch('data.json?t=' + Date.now());
+      if (!res.ok) throw new Error('data.json not found');
+      const json = await res.json();
+      state.data = (json.entries || []).slice().sort((a, b) => b.date.localeCompare(a.date));
+      render();
+    } catch (e) {
+      document.getElementById('content').innerHTML =
+        '<div class="empty">📭 まだ雑学がありません<br><small>data.json が空か未配置です</small></div>';
+    }
+  }
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  }
+
+  function highlight(text, query) {
+    const safe = escapeHtml(text);
+    if (!query) return safe;
+    const re = new RegExp('(' + query.replace(/[.*+?^${}()|[\]\\]/g, '\\$&') + ')', 'gi');
+    return safe.replace(re, '<mark>$1</mark>');
+  }
+
+  function relativeDate(dateStr) {
+    const d = new Date(dateStr + 'T00:00:00');
+    const today = new Date();
+    today.setHours(0,0,0,0);
+    const diff = Math.round((today - d) / 86400000);
+    if (diff === 0) return '今日';
+    if (diff === 1) return '昨日';
+    if (diff < 7) return diff + '日前';
+    if (diff < 30) return Math.floor(diff / 7) + '週間前';
+    return Math.floor(diff / 30) + 'か月前';
+  }
+
+  function matchesQuery(topic, q) {
+    if (!q) return true;
+    const hay = ((topic.title || '') + ' ' + (topic.body || '')).toLowerCase();
+    return hay.includes(q.toLowerCase());
+  }
+
+  function renderCard(topic, category, query) {
+    const cls = category === 'it' ? 'it' : 'general';
+    const label = category === 'it' ? 'IT/クラウド' : '一般';
+    const img = topic.image
+      ? `<img src="${escapeHtml(topic.image)}" alt="" loading="lazy" onerror="this.style.display='none'">`
+      : '';
+    const news = topic.newsSource
+      ? `<p class="news-source">${escapeHtml(topic.newsSource)}</p>`
+      : '';
+    return `
+      <article class="card">
+        ${img}
+        <div class="card-body">
+          <span class="card-tag ${cls}">${label}</span>
+          <h3 class="card-title">${highlight(topic.title || '', query)}</h3>
+          ${news}
+          <p class="card-text">${highlight(topic.body || '', query)}</p>
+        </div>
+      </article>`;
+  }
+
+  function render() {
+    const q = state.query.trim();
+    const content = document.getElementById('content');
+    let totalCards = 0;
+    const html = state.data.map(entry => {
+      const sections = [];
+      if (state.filter === 'all' || state.filter === 'general') {
+        const matched = (entry.general || []).filter(t => matchesQuery(t, q));
+        if (matched.length) {
+          sections.push(`<div class="relay-label">一般雑学リレー</div>
+            <div class="grid">${matched.map(t => renderCard(t, 'general', q)).join('')}</div>`);
+          totalCards += matched.length;
+        }
+      }
+      if (state.filter === 'all' || state.filter === 'it') {
+        const matched = (entry.it || []).filter(t => matchesQuery(t, q));
+        if (matched.length) {
+          sections.push(`<div class="relay-label">IT／クラウド雑学リレー</div>
+            <div class="grid">${matched.map(t => renderCard(t, 'it', q)).join('')}</div>`);
+          totalCards += matched.length;
+        }
+      }
+      if (!sections.leng
