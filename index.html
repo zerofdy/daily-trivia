@@ -100,8 +100,6 @@ footer{text-align:center;padding:40px 24px 56px;border-top:1px solid var(--line)
 footer .signature{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--ink);margin-bottom:6px}
 footer a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
 footer a:hover{border-bottom-color:var(--accent)}
-
-/* Settings modal */
 .settings-modal-body{padding:28px 32px 32px}
 .settings-modal-body h2{font-family:var(--serif);font-weight:500;font-size:24px;margin-bottom:6px;letter-spacing:-.01em}
 .settings-modal-body .desc{color:var(--muted);font-size:13px;margin-bottom:24px;line-height:1.6}
@@ -130,7 +128,6 @@ footer a:hover{border-bottom-color:var(--accent)}
 .save-status{font-size:12px;color:var(--muted)}
 .save-status.success{color:#16a34a}
 .save-status.error{color:#dc2626}
-
 @media (max-width:600px){.site-header{padding:40px 20px 24px}.settings-btn{top:14px;right:14px}.controls-wrap{padding:12px 16px}.controls{gap:10px}main{padding:24px 16px 60px}.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}.card-title{font-size:13px;-webkit-line-clamp:3}.card-fallback-glyph{font-size:48px}.modal-body,.settings-modal-body{padding:22px 22px 28px}.modal-img{max-height:240px}}
 @media (max-width:380px){.grid{grid-template-columns:1fr 1fr}}
 </style>
@@ -150,26 +147,19 @@ footer a:hover{border-bottom-color:var(--accent)}
     <button class="btn-pill" id="filterToggle">絞り込み <span class="count" id="filterCount" style="display:none">0</span><svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg></button>
   </div>
   <div class="filter-panel" id="filterPanel">
-    <div class="filter-section-label">ジャンル</div>
-    <div class="chip-row" id="genreChips"></div>
-    <div class="filter-section-label">タグ</div>
-    <div class="chip-row" id="tagChips"></div>
+    <div class="filter-section-label">ジャンル</div><div class="chip-row" id="genreChips"></div>
+    <div class="filter-section-label">タグ</div><div class="chip-row" id="tagChips"></div>
   </div>
 </div>
 <main><div id="stats" class="stats"></div><div id="content"><div class="loading">読み込み中…</div></div></main>
 <footer><div class="signature">— Curated daily by Cowork —</div>Powered by Cowork × GitHub Pages ・ <a href="https://github.com/zerofdy/daily-trivia" target="_blank" rel="noopener">View source</a></footer>
-
-<!-- Topic detail modal -->
 <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true"><div class="modal" id="modal"><button class="modal-close" id="modalClose" aria-label="閉じる"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div id="modalContent"></div></div></div>
-
-<!-- Settings modal -->
 <div class="modal-backdrop" id="settingsBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
   <div class="modal">
     <button class="modal-close" id="settingsClose" aria-label="閉じる"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
     <div class="settings-modal-body">
       <h2>設定</h2>
       <p class="desc">希望キーワードを登録すると、毎朝の通常5トピックに加えて、各キーワードに関連する雑学が1つずつ追加で配信されます。「ワンピース」なら作品本編・悪魔の実・キャラ・海賊用語など、ゆるく関連するもの全般がテーマになります。</p>
-
       <div class="settings-section">
         <h3>希望キーワード</h3>
         <div class="keyword-list" id="kwList"></div>
@@ -178,100 +168,28 @@ footer a:hover{border-bottom-color:var(--accent)}
           <button class="btn-primary" id="kwAdd">追加</button>
         </div>
       </div>
-
       <div class="settings-section">
         <h3>GitHub Personal Access Token</h3>
         <div class="pat-status" id="patStatus"><span class="dot"></span><span class="text">未設定</span></div>
         <input class="pat-input" id="patInput" type="password" placeholder="github_pat_... （fine-grained token, Contents:Read&Write）" autocomplete="off">
         <p class="pat-note">キーワードを repo に書き込むために必要です。ブラウザの localStorage に保存され、GitHub Pages 外には送られません。<br>取得：<a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> （Repository: daily-trivia, Permissions: Contents Read&Write）</p>
       </div>
-
-      <div class="save-row">
-        <span class="save-status" id="saveStatus"></span>
-        <button class="btn-primary" id="saveSettings">保存して反映</button>
-      </div>
+      <div class="save-row"><span class="save-status" id="saveStatus"></span><button class="btn-primary" id="saveSettings">保存して反映</button></div>
     </div>
   </div>
 </div>
-
 <script>
-const READ_KEY='daily-trivia-read-v1';
-const PAT_KEY='daily-trivia-pat';
-const KW_CACHE_KEY='daily-trivia-keywords-cache';
-const GITHUB_USER='zerofdy';
-const GITHUB_REPO='daily-trivia';
+const READ_KEY='daily-trivia-read-v1',PAT_KEY='daily-trivia-pat',KW_CACHE_KEY='daily-trivia-keywords-cache',GITHUB_USER='zerofdy',GITHUB_REPO='daily-trivia';
 const GENRE_ORDER=['時事','IT','歴史','飲食','企業','ゲーム','漫画','人物','自然・生物','文化・言葉','その他'];
 const GENRE_COLOR={'時事':'#1e3a5f','IT':'#1e4a3d','歴史':'#4a3b1e','飲食':'#5a2e1e','企業':'#2e3e5e','ゲーム':'#3e1e5a','漫画':'#5a1e3e','人物':'#1e5a4a','自然・生物':'#2e5a1e','文化・言葉':'#5a4a1e','その他':'#3a3a3a'};
-const state={data:[],query:'',sort:'newest',activeTags:new Set(),activeGenres:new Set(),allTags:new Map(),allGenres:new Map(),flatList:[],currentIdx:-1,readSet:new Set(),unreadOnly:false,keywords:[],prefsSha:null};
-
+const state={data:[],query:'',sort:'newest',activeTags:new Set(),activeGenres:new Set(),allTags:new Map(),allGenres:new Map(),flatList:[],currentIdx:-1,readSet:new Set(),unreadOnly:false,keywords:[]};
 function topicKey(item){return item.date+'|'+(item.topic.title||'');}
 function loadRead(){try{const raw=localStorage.getItem(READ_KEY);if(raw)return new Set(JSON.parse(raw));}catch(e){}return null;}
 function saveRead(){try{localStorage.setItem(READ_KEY,JSON.stringify([...state.readSet]));}catch(e){}}
-
-async function loadPreferences(){
-  try{
-    const res=await fetch('preferences.json?t='+Date.now());
-    if(!res.ok){state.keywords=[];return;}
-    const json=await res.json();
-    state.keywords=Array.isArray(json.keywords)?json.keywords:[];
-    localStorage.setItem(KW_CACHE_KEY,JSON.stringify(state.keywords));
-  }catch(e){
-    const cached=localStorage.getItem(KW_CACHE_KEY);
-    state.keywords=cached?JSON.parse(cached):[];
-  }
-}
-
-async function load(){
-  try{
-    const res=await fetch('data.json?t='+Date.now());
-    if(!res.ok)throw new Error('data.json not found');
-    const json=await res.json();
-    const all=[];
-    for(const e of (json.entries||[])){
-      if(Array.isArray(e.topics)){for(const t of e.topics)all.push({date:e.date,topic:t});}
-      else{
-        for(const t of (e.general||[]))all.push({date:e.date,topic:{...t,genre:t.genre||'その他'}});
-        for(const t of (e.it||[]))all.push({date:e.date,topic:{...t,genre:t.genre||'IT'}});
-      }
-    }
-    state.data=all;
-    const existing=loadRead();
-    if(existing===null){state.readSet=new Set(all.map(topicKey));saveRead();}
-    else{state.readSet=existing;}
-    await loadPreferences();
-    collectFacets();renderChips();render();
-  }catch(e){document.getElementById('content').innerHTML='<div class="empty"><h3>まだ雑学がありません</h3><p>data.json が空か未配置です</p></div>';}
-}
-
-function collectFacets(){
-  const tm=new Map();const gm=new Map();
-  for(const item of state.data){
-    const g=item.topic.genre||'その他';
-    gm.set(g,(gm.get(g)||0)+1);
-    for(const tag of (item.topic.tags||[])){tm.set(tag,(tm.get(tag)||0)+1);}
-  }
-  state.allTags=new Map([...tm.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])));
-  const sorted=GENRE_ORDER.filter(g=>gm.has(g)).map(g=>[g,gm.get(g)]);
-  for(const [g,n] of gm){if(!GENRE_ORDER.includes(g))sorted.push([g,n]);}
-  state.allGenres=new Map(sorted);
-}
-
-function renderChips(){
-  const genreHtml=[...state.allGenres.entries()].map(([g,n])=>`<button class="chip${state.activeGenres.has(g)?' active':''}" data-genre="${escapeAttr(g)}">${escapeHtml(g)} <span style="opacity:.5">${n}</span></button>`).join('');
-  const gClear=state.activeGenres.size?`<button class="clear-btn" id="clearGenres">× クリア</button>`:'';
-  document.getElementById('genreChips').innerHTML=genreHtml+gClear;
-  document.querySelectorAll('#genreChips .chip').forEach(btn=>btn.addEventListener('click',()=>toggleGenre(btn.dataset.genre)));
-  const gc=document.getElementById('clearGenres');
-  if(gc)gc.addEventListener('click',()=>{state.activeGenres.clear();renderChips();render();updateFilterCount();});
-  const tagHtml=[...state.allTags.entries()].map(([tag,n])=>`<button class="chip${state.activeTags.has(tag)?' active':''}" data-tag="${escapeAttr(tag)}">${escapeHtml(tag)} <span style="opacity:.5">${n}</span></button>`).join('');
-  const tClear=state.activeTags.size?`<button class="clear-btn" id="clearTags">× クリア</button>`:'';
-  document.getElementById('tagChips').innerHTML=tagHtml+tClear;
-  document.querySelectorAll('#tagChips .chip').forEach(btn=>btn.addEventListener('click',()=>toggleTag(btn.dataset.tag)));
-  const tc=document.getElementById('clearTags');
-  if(tc)tc.addEventListener('click',()=>{state.activeTags.clear();renderChips();render();updateFilterCount();});
-  updateFilterCount();
-}
-
+async function loadPreferences(){try{const res=await fetch('preferences.json?t='+Date.now());if(!res.ok){state.keywords=[];return;}const json=await res.json();state.keywords=Array.isArray(json.keywords)?json.keywords:[];localStorage.setItem(KW_CACHE_KEY,JSON.stringify(state.keywords));}catch(e){const cached=localStorage.getItem(KW_CACHE_KEY);state.keywords=cached?JSON.parse(cached):[];}}
+async function load(){try{const res=await fetch('data.json?t='+Date.now());if(!res.ok)throw new Error('data.json not found');const json=await res.json();const all=[];for(const e of (json.entries||[])){if(Array.isArray(e.topics)){for(const t of e.topics)all.push({date:e.date,topic:t});}else{for(const t of (e.general||[]))all.push({date:e.date,topic:{...t,genre:t.genre||'その他'}});for(const t of (e.it||[]))all.push({date:e.date,topic:{...t,genre:t.genre||'IT'}});}}state.data=all;const existing=loadRead();if(existing===null){state.readSet=new Set(all.map(topicKey));saveRead();}else{state.readSet=existing;}await loadPreferences();collectFacets();renderChips();render();}catch(e){document.getElementById('content').innerHTML='<div class="empty"><h3>まだ雑学がありません</h3><p>data.json が空か未配置です</p></div>';}}
+function collectFacets(){const tm=new Map(),gm=new Map();for(const item of state.data){const g=item.topic.genre||'その他';gm.set(g,(gm.get(g)||0)+1);for(const tag of (item.topic.tags||[])){tm.set(tag,(tm.get(tag)||0)+1);}}state.allTags=new Map([...tm.entries()].sort((a,b)=>b[1]-a[1]||a[0].localeCompare(b[0])));const sorted=GENRE_ORDER.filter(g=>gm.has(g)).map(g=>[g,gm.get(g)]);for(const [g,n] of gm){if(!GENRE_ORDER.includes(g))sorted.push([g,n]);}state.allGenres=new Map(sorted);}
+function renderChips(){const gh=[...state.allGenres.entries()].map(([g,n])=>`<button class="chip${state.activeGenres.has(g)?' active':''}" data-genre="${escapeAttr(g)}">${escapeHtml(g)} <span style="opacity:.5">${n}</span></button>`).join('');document.getElementById('genreChips').innerHTML=gh+(state.activeGenres.size?`<button class="clear-btn" id="clearGenres">× クリア</button>`:'');document.querySelectorAll('#genreChips .chip').forEach(b=>b.addEventListener('click',()=>toggleGenre(b.dataset.genre)));const gc=document.getElementById('clearGenres');if(gc)gc.addEventListener('click',()=>{state.activeGenres.clear();renderChips();render();updateFilterCount();});const th=[...state.allTags.entries()].map(([tag,n])=>`<button class="chip${state.activeTags.has(tag)?' active':''}" data-tag="${escapeAttr(tag)}">${escapeHtml(tag)} <span style="opacity:.5">${n}</span></button>`).join('');document.getElementById('tagChips').innerHTML=th+(state.activeTags.size?`<button class="clear-btn" id="clearTags">× クリア</button>`:'');document.querySelectorAll('#tagChips .chip').forEach(b=>b.addEventListener('click',()=>toggleTag(b.dataset.tag)));const tc=document.getElementById('clearTags');if(tc)tc.addEventListener('click',()=>{state.activeTags.clear();renderChips();render();updateFilterCount();});updateFilterCount();}
 function updateFilterCount(){const c=document.getElementById('filterCount');const n=state.activeGenres.size+state.activeTags.size;if(n>0){c.style.display='';c.textContent=n;}else c.style.display='none';}
 function updateUnreadBadge(){const c=document.getElementById('unreadCount');const n=unreadCount();if(n>0){c.style.display='';c.textContent=n;}else c.style.display='none';document.getElementById('unreadToggle').classList.toggle('active',state.unreadOnly);}
 function unreadCount(){let c=0;for(const it of state.data){if(!state.readSet.has(topicKey(it)))c++;}return c;}
@@ -281,168 +199,39 @@ function escapeHtml(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':
 function escapeAttr(s){return escapeHtml(s);}
 function highlight(text,query){const safe=escapeHtml(text);if(!query)return safe;const re=new RegExp('('+query.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+')','gi');return safe.replace(re,'<mark>$1</mark>');}
 function formatDatePlain(dateStr){const[y,m,d]=dateStr.split('-');return `${y}.${m}.${d}`;}
-
-function matchesFilters(item,q){
-  if(q){const hay=((item.topic.title||'')+' '+(item.topic.body||'')+' '+(item.topic.tags||[]).join(' ')+' '+(item.topic.genre||'')+' '+(item.topic.requestedKeyword||'')).toLowerCase();if(!hay.includes(q.toLowerCase()))return false;}
-  if(state.activeGenres.size>0){if(!state.activeGenres.has(item.topic.genre||'その他'))return false;}
-  if(state.activeTags.size>0){const tagset=new Set(item.topic.tags||[]);for(const t of state.activeTags){if(!tagset.has(t))return false;}}
-  if(state.unreadOnly&&state.readSet.has(topicKey(item)))return false;
-  return true;
-}
-
-function sortItems(items){
-  if(state.sort==='oldest')return items.slice().sort((a,b)=>a.date.localeCompare(b.date));
-  if(state.sort==='random'){const a=items.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}
-  return items.slice().sort((a,b)=>b.date.localeCompare(a.date));
-}
-
+function matchesFilters(item,q){if(q){const hay=((item.topic.title||'')+' '+(item.topic.body||'')+' '+(item.topic.tags||[]).join(' ')+' '+(item.topic.genre||'')+' '+(item.topic.requestedKeyword||'')).toLowerCase();if(!hay.includes(q.toLowerCase()))return false;}if(state.activeGenres.size>0){if(!state.activeGenres.has(item.topic.genre||'その他'))return false;}if(state.activeTags.size>0){const ts=new Set(item.topic.tags||[]);for(const t of state.activeTags){if(!ts.has(t))return false;}}if(state.unreadOnly&&state.readSet.has(topicKey(item)))return false;return true;}
+function sortItems(items){if(state.sort==='oldest')return items.slice().sort((a,b)=>a.date.localeCompare(b.date));if(state.sort==='random'){const a=items.slice();for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a;}return items.slice().sort((a,b)=>b.date.localeCompare(a.date));}
 function fallbackGlyph(genre){const map={'時事':'今','IT':'IT','歴史':'史','飲食':'食','企業':'企','ゲーム':'G','漫画':'漫','人物':'人','自然・生物':'生','文化・言葉':'文','その他':'他'};return map[genre]||genre;}
-
-function renderCard(item,query,flatIdx){
-  const isUnread=!state.readSet.has(topicKey(item));
-  const newBadge=isUnread?'<span class="card-new-badge">NEW</span>':'';
-  const genre=item.topic.genre||'その他';
-  const kw=item.topic.requestedKeyword;
-  const topLeftBadge=kw
-    ? `<span class="card-keyword-badge">${escapeHtml(kw)}</span>`
-    : `<span class="card-genre-badge">${escapeHtml(genre)}</span>`;
-  const bgColor=GENRE_COLOR[genre]||GENRE_COLOR['その他'];
-  const hasImg=!!item.topic.image;
-  const img=hasImg?`<img class="card-img" src="${escapeAttr(item.topic.image)}" alt="" loading="lazy" onerror="this.classList.add('failed');this.closest('.card').classList.add('img-failed');">`:'';
-  const fallback=`<div class="card-fallback" style="background:${bgColor}"><span class="card-fallback-glyph">${escapeHtml(fallbackGlyph(genre))}</span></div>`;
-  const cls=isUnread?' unread':'';
-  const noImgCls=hasImg?'':' no-image';
-  return `<button class="card${cls}${noImgCls}" data-idx="${flatIdx}">${img}${fallback}<div class="card-gradient"></div>${topLeftBadge}${newBadge}<span class="card-title">${highlight(item.topic.title||'',query)}</span></button>`;
-}
-
-function render(){
-  const q=state.query.trim();
-  const content=document.getElementById('content');
-  const filtered=state.data.filter(item=>matchesFilters(item,q));
-  state.flatList=sortItems(filtered);
-  const cards=state.flatList.map((item,idx)=>renderCard(item,q,idx)).join('');
-  const filterParts=[];
-  if(q)filterParts.push(`「${escapeHtml(q)}」で検索`);
-  if(state.activeGenres.size)filterParts.push(`ジャンル: ${[...state.activeGenres].join(', ')}`);
-  if(state.activeTags.size)filterParts.push(`タグ: ${[...state.activeTags].join(', ')}`);
-  if(state.unreadOnly)filterParts.push(`未読のみ`);
-  const filterStr=filterParts.length?`（${filterParts.join(' / ')}）`:'';
-  const unread=unreadCount();
-  const markAll=unread>0?`<button class="markall" id="markAllBtn">全部既読にする</button>`:'';
-  document.getElementById('stats').innerHTML=`<span>${state.flatList.length} トピック</span>${filterStr?'<span>'+filterStr+'</span>':''}${markAll}`;
-  content.innerHTML=cards?`<div class="grid">${cards}</div>`:'<div class="empty"><h3>該当する雑学が見つかりませんでした</h3><p>検索条件・絞り込みを変えてみてください</p></div>';
-  document.querySelectorAll('.card').forEach(btn=>btn.addEventListener('click',()=>openModal(parseInt(btn.dataset.idx,10))));
-  const mab=document.getElementById('markAllBtn');
-  if(mab)mab.addEventListener('click',()=>{state.readSet=new Set(state.data.map(topicKey));saveRead();render();updateUnreadBadge();});
-  updateUnreadBadge();
-}
-
-const backdrop=document.getElementById('modalBackdrop');const modalContent=document.getElementById('modalContent');
+function renderCard(item,query,flatIdx){const isUnread=!state.readSet.has(topicKey(item));const newBadge=isUnread?'<span class="card-new-badge">NEW</span>':'';const genre=item.topic.genre||'その他';const kw=item.topic.requestedKeyword;const topLeftBadge=kw?`<span class="card-keyword-badge">${escapeHtml(kw)}</span>`:`<span class="card-genre-badge">${escapeHtml(genre)}</span>`;const bgColor=GENRE_COLOR[genre]||GENRE_COLOR['その他'];const hasImg=!!item.topic.image;const img=hasImg?`<img class="card-img" src="${escapeAttr(item.topic.image)}" alt="" loading="lazy" onerror="this.classList.add('failed');this.closest('.card').classList.add('img-failed');">`:'';const fallback=`<div class="card-fallback" style="background:${bgColor}"><span class="card-fallback-glyph">${escapeHtml(fallbackGlyph(genre))}</span></div>`;return `<button class="card${isUnread?' unread':''}${hasImg?'':' no-image'}" data-idx="${flatIdx}">${img}${fallback}<div class="card-gradient"></div>${topLeftBadge}${newBadge}<span class="card-title">${highlight(item.topic.title||'',query)}</span></button>`;}
+function render(){const q=state.query.trim();const content=document.getElementById('content');const filtered=state.data.filter(item=>matchesFilters(item,q));state.flatList=sortItems(filtered);const cards=state.flatList.map((item,idx)=>renderCard(item,q,idx)).join('');const fp=[];if(q)fp.push(`「${escapeHtml(q)}」で検索`);if(state.activeGenres.size)fp.push(`ジャンル: ${[...state.activeGenres].join(', ')}`);if(state.activeTags.size)fp.push(`タグ: ${[...state.activeTags].join(', ')}`);if(state.unreadOnly)fp.push(`未読のみ`);const filterStr=fp.length?`（${fp.join(' / ')}）`:'';const unread=unreadCount();const markAll=unread>0?`<button class="markall" id="markAllBtn">全部既読にする</button>`:'';document.getElementById('stats').innerHTML=`<span>${state.flatList.length} トピック</span>${filterStr?'<span>'+filterStr+'</span>':''}${markAll}`;content.innerHTML=cards?`<div class="grid">${cards}</div>`:'<div class="empty"><h3>該当する雑学が見つかりませんでした</h3><p>検索条件・絞り込みを変えてみてください</p></div>';document.querySelectorAll('.card').forEach(b=>b.addEventListener('click',()=>openModal(parseInt(b.dataset.idx,10))));const mab=document.getElementById('markAllBtn');if(mab)mab.addEventListener('click',()=>{state.readSet=new Set(state.data.map(topicKey));saveRead();render();updateUnreadBadge();});updateUnreadBadge();}
+const backdrop=document.getElementById('modalBackdrop'),modalContent=document.getElementById('modalContent');
 function modalOpen(){return backdrop.classList.contains('open');}
 function markRead(item){const k=topicKey(item);if(!state.readSet.has(k)){state.readSet.add(k);saveRead();return true;}return false;}
 function openModal(idx){state.currentIdx=idx;const item=state.flatList[idx];if(item)markRead(item);renderModal();backdrop.classList.add('open');backdrop.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');}
 function closeModal(){backdrop.classList.remove('open');backdrop.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');state.currentIdx=-1;render();}
 function navModal(delta){const next=state.currentIdx+delta;if(next<0||next>=state.flatList.length)return;state.currentIdx=next;const item=state.flatList[next];if(item)markRead(item);renderModal();document.getElementById('modal').scrollTop=0;}
-
-function renderModal(){
-  const item=state.flatList[state.currentIdx];if(!item)return;
-  const{date,topic}=item;
-  const genre=topic.genre||'その他';
-  const kw=topic.requestedKeyword;
-  const img=topic.image?`<img class="modal-img" src="${escapeAttr(topic.image)}" alt="" onerror="this.style.display='none'">`:'';
-  const news=topic.newsSource?`<p class="modal-news">${escapeHtml(topic.newsSource)}</p>`:'';
-  const kwBadge=kw?`<span class="modal-kw-badge">${escapeHtml(kw)}</span>`:'';
-  const tags=(topic.tags||[]).map(t=>`<button class="modal-tag${state.activeTags.has(t)?' active':''}" data-tag="${escapeAttr(t)}">${escapeHtml(t)}</button>`).join('');
-  const prevDisabled=state.currentIdx<=0?'disabled':'';
-  const nextDisabled=state.currentIdx>=state.flatList.length-1?'disabled':'';
-  modalContent.innerHTML=`${img}<div class="modal-body"><div class="modal-meta"><button class="genre-badge${state.activeGenres.has(genre)?' active':''}" data-genre="${escapeAttr(genre)}">${escapeHtml(genre)}</button>${kwBadge}<span class="modal-date">${formatDatePlain(date)}</span></div>${news}<h2 class="modal-title">${escapeHtml(topic.title||'')}</h2><p class="modal-text">${escapeHtml(topic.body||'')}</p>${tags?`<div class="modal-tags">${tags}</div>`:''}<div class="modal-nav"><button class="modal-nav-btn" id="prevBtn" ${prevDisabled}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>前のトピック</button><button class="modal-nav-btn" id="nextBtn" ${nextDisabled}>次のトピック<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button></div></div>`;
-  modalContent.querySelectorAll('.modal-tag').forEach(btn=>btn.addEventListener('click',(e)=>{e.stopPropagation();toggleTag(btn.dataset.tag);}));
-  modalContent.querySelectorAll('.genre-badge').forEach(btn=>btn.addEventListener('click',(e)=>{e.stopPropagation();toggleGenre(btn.dataset.genre);}));
-  const pb=document.getElementById('prevBtn');const nb=document.getElementById('nextBtn');
-  if(pb)pb.addEventListener('click',()=>navModal(-1));
-  if(nb)nb.addEventListener('click',()=>navModal(1));
-}
-
+function renderModal(){const item=state.flatList[state.currentIdx];if(!item)return;const{date,topic}=item;const genre=topic.genre||'その他';const kw=topic.requestedKeyword;const img=topic.image?`<img class="modal-img" src="${escapeAttr(topic.image)}" alt="" onerror="this.style.display='none'">`:'';const news=topic.newsSource?`<p class="modal-news">${escapeHtml(topic.newsSource)}</p>`:'';const kwBadge=kw?`<span class="modal-kw-badge">${escapeHtml(kw)}</span>`:'';const tags=(topic.tags||[]).map(t=>`<button class="modal-tag${state.activeTags.has(t)?' active':''}" data-tag="${escapeAttr(t)}">${escapeHtml(t)}</button>`).join('');const pd=state.currentIdx<=0?'disabled':'';const nd=state.currentIdx>=state.flatList.length-1?'disabled':'';modalContent.innerHTML=`${img}<div class="modal-body"><div class="modal-meta"><button class="genre-badge${state.activeGenres.has(genre)?' active':''}" data-genre="${escapeAttr(genre)}">${escapeHtml(genre)}</button>${kwBadge}<span class="modal-date">${formatDatePlain(date)}</span></div>${news}<h2 class="modal-title">${escapeHtml(topic.title||'')}</h2><p class="modal-text">${escapeHtml(topic.body||'')}</p>${tags?`<div class="modal-tags">${tags}</div>`:''}<div class="modal-nav"><button class="modal-nav-btn" id="prevBtn" ${pd}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>前のトピック</button><button class="modal-nav-btn" id="nextBtn" ${nd}>次のトピック<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button></div></div>`;modalContent.querySelectorAll('.modal-tag').forEach(b=>b.addEventListener('click',(e)=>{e.stopPropagation();toggleTag(b.dataset.tag);}));modalContent.querySelectorAll('.genre-badge').forEach(b=>b.addEventListener('click',(e)=>{e.stopPropagation();toggleGenre(b.dataset.genre);}));const pb=document.getElementById('prevBtn'),nb=document.getElementById('nextBtn');if(pb)pb.addEventListener('click',()=>navModal(-1));if(nb)nb.addEventListener('click',()=>navModal(1));}
 backdrop.addEventListener('click',(e)=>{if(e.target===backdrop)closeModal();});
 document.getElementById('modalClose').addEventListener('click',closeModal);
+const settingsBackdrop=document.getElementById('settingsBackdrop');
+function settingsOpen(){return settingsBackdrop.classList.contains('open');}
+function openSettings(){renderSettings();settingsBackdrop.classList.add('open');settingsBackdrop.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');}
+function closeSettings(){settingsBackdrop.classList.remove('open');settingsBackdrop.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');}
+function renderSettings(){const list=document.getElementById('kwList');list.innerHTML=state.keywords.map((k,i)=>`<span class="kw-pill">${escapeHtml(k)}<button class="remove" data-i="${i}" aria-label="削除">×</button></span>`).join('');list.querySelectorAll('.remove').forEach(b=>b.addEventListener('click',()=>{state.keywords.splice(parseInt(b.dataset.i,10),1);renderSettings();}));const patStatus=document.getElementById('patStatus');const hasPat=!!localStorage.getItem(PAT_KEY);patStatus.classList.toggle('ok',hasPat);patStatus.classList.toggle('missing',!hasPat);patStatus.querySelector('.text').textContent=hasPat?'保存済み（変更する場合のみ下に入力）':'未設定';document.getElementById('patInput').value='';document.getElementById('saveStatus').textContent='';}
 document.addEventListener('keydown',(e)=>{if(!modalOpen()&&!settingsOpen())return;if(e.key==='Escape'){if(settingsOpen())closeSettings();else closeModal();}else if(modalOpen()){if(e.key==='ArrowLeft')navModal(-1);else if(e.key==='ArrowRight')navModal(1);}});
 document.getElementById('search').addEventListener('input',e=>{state.query=e.target.value;render();});
 document.getElementById('sortBy').addEventListener('change',e=>{state.sort=e.target.value;render();});
 document.getElementById('unreadToggle').addEventListener('click',()=>{state.unreadOnly=!state.unreadOnly;render();});
 const ft=document.getElementById('filterToggle');
 ft.addEventListener('click',()=>{ft.classList.toggle('open');document.getElementById('filterPanel').classList.toggle('open');});
-
-/* ===== Settings ===== */
-const settingsBackdrop=document.getElementById('settingsBackdrop');
-function settingsOpen(){return settingsBackdrop.classList.contains('open');}
-function openSettings(){renderSettings();settingsBackdrop.classList.add('open');settingsBackdrop.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');}
-function closeSettings(){settingsBackdrop.classList.remove('open');settingsBackdrop.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');}
-
-function renderSettings(){
-  const list=document.getElementById('kwList');
-  list.innerHTML=state.keywords.map((k,i)=>`<span class="kw-pill">${escapeHtml(k)}<button class="remove" data-i="${i}" aria-label="削除">×</button></span>`).join('');
-  list.querySelectorAll('.remove').forEach(b=>b.addEventListener('click',()=>{
-    state.keywords.splice(parseInt(b.dataset.i,10),1);
-    renderSettings();
-  }));
-  const patStatus=document.getElementById('patStatus');
-  const hasPat=!!localStorage.getItem(PAT_KEY);
-  patStatus.classList.toggle('ok',hasPat);
-  patStatus.classList.toggle('missing',!hasPat);
-  patStatus.querySelector('.text').textContent=hasPat?'保存済み（変更する場合のみ下に入力）':'未設定';
-  document.getElementById('patInput').value='';
-  document.getElementById('saveStatus').textContent='';
-}
-
 document.getElementById('settingsBtn').addEventListener('click',openSettings);
 document.getElementById('settingsClose').addEventListener('click',closeSettings);
 settingsBackdrop.addEventListener('click',(e)=>{if(e.target===settingsBackdrop)closeSettings();});
-document.getElementById('kwAdd').addEventListener('click',()=>{
-  const inp=document.getElementById('kwInput');
-  const v=inp.value.trim();
-  if(!v)return;
-  if(state.keywords.includes(v)){inp.value='';return;}
-  if(state.keywords.length>=10){
-    document.getElementById('saveStatus').textContent='最大10件まで登録できます';
-    document.getElementById('saveStatus').className='save-status error';
-    return;
-  }
-  state.keywords.push(v);
-  inp.value='';
-  renderSettings();
-});
+document.getElementById('kwAdd').addEventListener('click',()=>{const inp=document.getElementById('kwInput');const v=inp.value.trim();if(!v)return;if(state.keywords.includes(v)){inp.value='';return;}if(state.keywords.length>=10){document.getElementById('saveStatus').textContent='最大10件まで登録できます';document.getElementById('saveStatus').className='save-status error';return;}state.keywords.push(v);inp.value='';renderSettings();});
 document.getElementById('kwInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();document.getElementById('kwAdd').click();}});
-
-async function saveSettings(){
-  const status=document.getElementById('saveStatus');
-  const newPat=document.getElementById('patInput').value.trim();
-  if(newPat){
-    if(!newPat.startsWith('github_pat_')&&!newPat.startsWith('ghp_')){
-      status.textContent='PAT の形式が正しくありません';status.className='save-status error';return;
-    }
-    localStorage.setItem(PAT_KEY,newPat);
-  }
-  const pat=localStorage.getItem(PAT_KEY);
-  if(!pat){status.textContent='PAT が設定されていません';status.className='save-status error';return;}
-
-  status.textContent='保存中…';status.className='save-status';
-  const btn=document.getElementById('saveSettings');btn.disabled=true;
-  try{
-    // Get current SHA
-    const ghHeaders={'Authorization':`Bearer ${pat}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
-    const getRes=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/preferences.json`,{headers:ghHeaders});
-    if(!getRes.ok)throw new Error(`GitHub GET ${getRes.status}: ${await getRes.text()}`);
-    const cur=await getRes.json();
-    const newContent=JSON.stringify({keywords:state.keywords},null,2)+'\n';
-    const encoded=btoa(unescape(encodeURIComponent(newContent)));
-    const putRes=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/preferences.json`,{
-      method:'PUT',headers:ghHeaders,
-      body:JSON.stringify({message:`Update keywords (${state.keywords.length} items) via site`,content:encoded,sha:cur.sha})
-    });
-    if(!putRes.ok)throw new Error(`GitHub PUT ${putRes.status}: ${await putRes.text()}`);
-    localStorage.setItem(KW_CACHE_KEY,JSON.stringify(state.keywords));
-    status.textContent=`✓ 保存しました（${state.keywords.length}件）`;status.className='save-status success';
-    setTimeout(()=>{renderSettings();},800);
-  }catch(e){
-    status.textContent='エラー: '+e.message.slice(0,120);status.className='save-status error';
-  
+async function saveSettings(){const status=document.getElementById('saveStatus');const newPat=document.getElementById('patInput').value.trim();if(newPat){if(!newPat.startsWith('github_pat_')&&!newPat.startsWith('ghp_')){status.textContent='PAT の形式が正しくありません';status.className='save-status error';return;}localStorage.setItem(PAT_KEY,newPat);}const pat=localStorage.getItem(PAT_KEY);if(!pat){status.textContent='PAT が設定されていません';status.className='save-status error';return;}status.textContent='保存中…';status.className='save-status';const btn=document.getElementById('saveSettings');btn.disabled=true;try{const h={'Authorization':`Bearer ${pat}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};const getRes=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/preferences.json`,{headers:h});if(!getRes.ok)throw new Error(`GitHub GET ${getRes.status}: ${await getRes.text()}`);const cur=await getRes.json();const newContent=JSON.stringify({keywords:state.keywords},null,2)+'\n';const encoded=btoa(unescape(encodeURIComponent(newContent)));const putRes=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/preferences.json`,{method:'PUT',headers:h,body:JSON.stringify({message:`Update keywords (${state.keywords.length} items) via site`,content:encoded,sha:cur.sha})});if(!putRes.ok)throw new Error(`GitHub PUT ${putRes.status}: ${await putRes.text()}`);localStorage.setItem(KW_CACHE_KEY,JSON.stringify(state.keywords));status.textContent=`✓ 保存しました（${state.keywords.length}件）`;status.className='save-status success';setTimeout(()=>{renderSettings();},800);}catch(e){status.textContent='エラー: '+e.message.slice(0,120);status.className='save-status error';}finally{btn.disabled=false;}}
+document.getElementById('saveSettings').addEventListener('click',saveSettings);
+load();
+</script>
+</body>
+</html>
