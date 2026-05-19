@@ -17,12 +17,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&family=Noto+Serif+JP:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
 <style>
-:root{--bg:#f5f1ea;--bg-secondary:#ebe5da;--surface:#fefcf7;--ink:#1a1a1a;--ink-soft:#3d3a35;--muted:#847d72;--line:#d8d0c0;--line-soft:#e8e2d4;--accent:#8b5a2b;--accent-soft:#d4a574;--tag-bg:rgba(26,26,26,0.05);--tag-bg-hover:rgba(26,26,26,0.1);--tag-active-bg:#1a1a1a;--tag-active-ink:#f5f1ea;--new:#c2410c;--new-bg:#fef3ec;--shadow-sm:0 1px 2px rgba(60,40,20,0.04);--shadow-md:0 4px 12px rgba(60,40,20,0.08),0 12px 28px rgba(60,40,20,0.05);--shadow-xl:0 20px 60px rgba(60,40,20,0.18),0 4px 14px rgba(60,40,20,0.08);--serif:'Fraunces','Noto Serif JP',Georgia,'Hiragino Mincho ProN',serif;--sans:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-  /* ジャンル別フォールバックカラー（画像なしの時の背景に使う） */
-  --g-時事:#1e3a5f;--g-IT:#1e4a3d;--g-歴史:#4a3b1e;--g-飲食:#5a2e1e;--g-企業:#2e3e5e;
-  --g-ゲーム:#3e1e5a;--g-漫画:#5a1e3e;--g-人物:#1e5a4a;--g-自然・生物:#2e5a1e;
-  --g-文化・言葉:#5a4a1e;--g-その他:#3a3a3a;
-}
+:root{--bg:#f5f1ea;--bg-secondary:#ebe5da;--surface:#fefcf7;--ink:#1a1a1a;--ink-soft:#3d3a35;--muted:#847d72;--line:#d8d0c0;--line-soft:#e8e2d4;--accent:#8b5a2b;--accent-soft:#d4a574;--tag-bg:rgba(26,26,26,0.05);--tag-bg-hover:rgba(26,26,26,0.1);--tag-active-bg:#1a1a1a;--tag-active-ink:#f5f1ea;--new:#c2410c;--new-bg:#fef3ec;--shadow-sm:0 1px 2px rgba(60,40,20,0.04);--shadow-md:0 4px 12px rgba(60,40,20,0.08),0 12px 28px rgba(60,40,20,0.05);--shadow-xl:0 20px 60px rgba(60,40,20,0.18),0 4px 14px rgba(60,40,20,0.08);--serif:'Fraunces','Noto Serif JP',Georgia,'Hiragino Mincho ProN',serif;--sans:'Inter','Noto Sans JP',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;--g-時事:#1e3a5f;--g-IT:#1e4a3d;--g-歴史:#4a3b1e;--g-飲食:#5a2e1e;--g-企業:#2e3e5e;--g-ゲーム:#3e1e5a;--g-漫画:#5a1e3e;--g-人物:#1e5a4a;--g-自然・生物:#2e5a1e;--g-文化・言葉:#5a4a1e;--g-その他:#3a3a3a}
 @media (prefers-color-scheme:dark){:root{--bg:#14130f;--bg-secondary:#1c1a16;--surface:#1f1d18;--ink:#f0ece4;--ink-soft:#d1cbbe;--muted:#8c8576;--line:#2e2b25;--line-soft:#25231e;--accent:#c89968;--accent-soft:#8b6a3f;--tag-bg:rgba(240,236,228,0.06);--tag-bg-hover:rgba(240,236,228,0.12);--tag-active-bg:#f0ece4;--tag-active-ink:#14130f;--new:#fb923c;--new-bg:#3a1f10;--shadow-sm:0 1px 2px rgba(0,0,0,0.3);--shadow-md:0 4px 12px rgba(0,0,0,0.5),0 12px 28px rgba(0,0,0,0.4);--shadow-xl:0 20px 60px rgba(0,0,0,0.6),0 4px 14px rgba(0,0,0,0.4)}.modal-close{background:rgba(20,20,20,0.7)!important}}
 *{box-sizing:border-box;margin:0;padding:0}html{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}
 body{font-family:var(--sans);background:var(--bg);color:var(--ink);line-height:1.7;font-size:15px;letter-spacing:.005em}
@@ -33,6 +28,8 @@ body.modal-open{overflow:hidden}
 .site-header h1{font-family:var(--serif);font-weight:400;font-size:clamp(36px,6vw,56px);letter-spacing:-.02em;line-height:1.1}
 .site-header h1 em{font-style:italic;font-weight:300;color:var(--accent)}
 .site-header .tagline{font-family:var(--serif);font-style:italic;font-weight:300;color:var(--muted);margin-top:14px;font-size:16px}
+.settings-btn{position:absolute;top:20px;right:20px;width:36px;height:36px;border-radius:50%;background:var(--surface);border:1px solid var(--line);color:var(--ink-soft);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s}
+.settings-btn:hover{border-color:var(--accent);color:var(--accent);transform:rotate(60deg)}
 .controls-wrap{position:sticky;top:0;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--line-soft);z-index:50;padding:16px 24px}
 .controls{max-width:1180px;margin:0 auto;display:flex;gap:16px;align-items:center;flex-wrap:wrap}
 .search-input{flex:1 1 260px;padding:11px 16px 11px 42px;border:1px solid var(--line);border-radius:100px;background:var(--surface);color:var(--ink);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .2s,box-shadow .2s;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' viewBox='0 0 24 24' fill='none' stroke='%23847d72' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:16px center}
@@ -61,7 +58,6 @@ main{max-width:1180px;margin:0 auto;padding:36px 24px 80px}
 .card-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:linear-gradient(135deg,var(--bg-secondary),var(--line-soft));transition:transform .6s ease}
 .card:hover .card-img{transform:scale(1.05)}
 .card-img.failed{display:none}
-/* 画像なし／失敗時のフォールバック背景（ジャンル色＋デコ） */
 .card-fallback{position:absolute;inset:0;display:none;align-items:center;justify-content:center;overflow:hidden}
 .card.no-image .card-fallback,.card.img-failed .card-fallback{display:flex}
 .card-fallback::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(255,255,255,0.08) 0%,rgba(0,0,0,0.15) 100%)}
@@ -69,6 +65,8 @@ main{max-width:1180px;margin:0 auto;padding:36px 24px 80px}
 .card-fallback-glyph{font-family:var(--serif);font-style:italic;font-weight:300;font-size:64px;color:rgba(255,255,255,0.18);line-height:1;letter-spacing:-0.04em;z-index:1;text-align:center;padding:0 10px}
 .card-gradient{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.0) 0%,rgba(0,0,0,0.05) 35%,rgba(0,0,0,0.55) 75%,rgba(0,0,0,0.85) 100%)}
 .card-genre-badge{position:absolute;top:10px;left:10px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.12em;color:#fff;background:rgba(0,0,0,0.5);padding:5px 9px;border-radius:4px;text-transform:uppercase;line-height:1;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);text-shadow:0 1px 2px rgba(0,0,0,0.3);z-index:2}
+.card-keyword-badge{position:absolute;top:10px;left:10px;font-family:var(--sans);font-size:10px;font-weight:700;letter-spacing:.06em;color:#fff;background:linear-gradient(135deg,var(--accent),#c89968);padding:5px 9px;border-radius:4px;line-height:1;box-shadow:0 1px 3px rgba(139,90,43,0.4);z-index:2}
+.card-keyword-badge::before{content:'★ ';opacity:.9}
 .card-new-badge{position:absolute;top:10px;right:10px;font-family:var(--sans);font-size:9px;font-weight:700;letter-spacing:.12em;color:#fff;background:var(--new);padding:4px 8px;border-radius:4px;text-transform:uppercase;line-height:1;box-shadow:0 2px 6px rgba(194,65,12,0.5);z-index:2}
 .card-title{position:absolute;left:14px;right:14px;bottom:14px;font-family:var(--serif);font-weight:600;font-size:15px;line-height:1.35;letter-spacing:-.005em;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,0.6);overflow:hidden;text-overflow:ellipsis;display:-webkit-box;-webkit-line-clamp:4;-webkit-box-orient:vertical;z-index:2}
 .modal-backdrop{position:fixed;inset:0;background:rgba(20,15,10,0.55);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);z-index:100;opacity:0;pointer-events:none;transition:opacity .25s ease;display:flex;align-items:center;justify-content:center;padding:24px}
@@ -83,6 +81,8 @@ main{max-width:1180px;margin:0 auto;padding:36px 24px 80px}
 .genre-badge{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.15em;padding:4px 10px;border-radius:4px;background:rgba(139,90,43,0.12);color:var(--accent);cursor:pointer;border:0;transition:all .15s}
 .genre-badge:hover{background:rgba(139,90,43,0.22)}.genre-badge.active{background:var(--tag-active-bg);color:var(--tag-active-ink)}
 .modal-date{font-family:var(--serif);font-size:13px;color:var(--muted);font-style:italic}
+.modal-kw-badge{font-size:11px;font-weight:600;padding:4px 10px;border-radius:4px;background:linear-gradient(135deg,var(--accent),#c89968);color:white}
+.modal-kw-badge::before{content:'★ リクエスト: '}
 .modal-news{font-family:var(--serif);font-style:italic;font-size:13px;color:var(--muted);border-left:2px solid var(--accent);padding:4px 0 4px 12px;margin:12px 0 16px}
 .modal-news::before{content:'起点: ';opacity:.7}
 .modal-title{font-family:var(--serif);font-weight:500;font-size:clamp(24px,4vw,32px);line-height:1.25;letter-spacing:-.015em;margin-bottom:18px}
@@ -100,12 +100,48 @@ footer{text-align:center;padding:40px 24px 56px;border-top:1px solid var(--line)
 footer .signature{font-family:var(--serif);font-style:italic;font-size:16px;color:var(--ink);margin-bottom:6px}
 footer a{color:var(--accent);text-decoration:none;border-bottom:1px solid transparent;transition:border-color .2s}
 footer a:hover{border-bottom-color:var(--accent)}
-@media (max-width:600px){.site-header{padding:40px 20px 24px}.controls-wrap{padding:12px 16px}.controls{gap:10px}main{padding:24px 16px 60px}.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}.card-title{font-size:13px;-webkit-line-clamp:3}.card-fallback-glyph{font-size:48px}.modal-body{padding:22px 22px 28px}.modal-img{max-height:240px}}
+
+/* Settings modal */
+.settings-modal-body{padding:28px 32px 32px}
+.settings-modal-body h2{font-family:var(--serif);font-weight:500;font-size:24px;margin-bottom:6px;letter-spacing:-.01em}
+.settings-modal-body .desc{color:var(--muted);font-size:13px;margin-bottom:24px;line-height:1.6}
+.settings-section{margin-bottom:28px}
+.settings-section h3{font-size:11px;font-weight:600;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.keyword-list{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px;min-height:36px;padding:10px;background:var(--bg);border:1px dashed var(--line);border-radius:10px}
+.keyword-list:empty::after{content:'まだキーワードが登録されていません';color:var(--muted);font-size:13px;font-style:italic;font-family:var(--serif)}
+.kw-pill{display:inline-flex;align-items:center;gap:6px;background:linear-gradient(135deg,var(--accent),#c89968);color:#fff;padding:6px 8px 6px 12px;border-radius:100px;font-size:13px;font-weight:500}
+.kw-pill .remove{cursor:pointer;background:rgba(255,255,255,.2);border:0;color:#fff;width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;font-size:14px;line-height:1;padding:0}
+.kw-pill .remove:hover{background:rgba(255,255,255,.4)}
+.kw-input-row{display:flex;gap:8px;align-items:stretch}
+.kw-input{flex:1;padding:10px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-family:var(--sans);font-size:14px;outline:none;transition:border-color .2s}
+.kw-input:focus{border-color:var(--accent)}
+.btn-primary{background:var(--ink);color:var(--bg);border:0;padding:10px 18px;border-radius:8px;cursor:pointer;font-family:var(--sans);font-size:13px;font-weight:600;transition:all .2s}
+.btn-primary:hover{background:var(--accent)}
+.btn-primary:disabled{opacity:.4;cursor:not-allowed}
+.pat-status{display:flex;align-items:center;gap:8px;font-size:13px;color:var(--muted);margin-bottom:8px}
+.pat-status .dot{width:8px;height:8px;border-radius:50%}
+.pat-status.ok .dot{background:#16a34a}
+.pat-status.missing .dot{background:#dc2626}
+.pat-input{width:100%;padding:10px 14px;border:1px solid var(--line);border-radius:8px;background:var(--surface);color:var(--ink);font-family:monospace;font-size:12px;outline:none;margin-bottom:6px}
+.pat-input:focus{border-color:var(--accent)}
+.pat-note{font-size:11px;color:var(--muted);line-height:1.5}
+.pat-note a{color:var(--accent);text-decoration:none;border-bottom:1px solid currentColor}
+.save-row{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid var(--line-soft);margin-top:24px}
+.save-status{font-size:12px;color:var(--muted)}
+.save-status.success{color:#16a34a}
+.save-status.error{color:#dc2626}
+
+@media (max-width:600px){.site-header{padding:40px 20px 24px}.settings-btn{top:14px;right:14px}.controls-wrap{padding:12px 16px}.controls{gap:10px}main{padding:24px 16px 60px}.grid{grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:10px}.card-title{font-size:13px;-webkit-line-clamp:3}.card-fallback-glyph{font-size:48px}.modal-body,.settings-modal-body{padding:22px 22px 28px}.modal-img{max-height:240px}}
 @media (max-width:380px){.grid{grid-template-columns:1fr 1fr}}
 </style>
 </head>
 <body>
-<header class="site-header"><div class="eyebrow">Daily Trivia Archive</div><h1>毎日の<em>雑学</em></h1><p class="tagline">— 今日のニュースから、明日の話のタネへ。</p></header>
+<header class="site-header">
+  <button class="settings-btn" id="settingsBtn" title="設定">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+  </button>
+  <div class="eyebrow">Daily Trivia Archive</div><h1>毎日の<em>雑学</em></h1><p class="tagline">— 今日のニュースから、明日の話のタネへ。</p>
+</header>
 <div class="controls-wrap">
   <div class="controls">
     <input id="search" class="search-input" type="search" placeholder="検索（例：AWS、徳川、Linus、ナポレオン...）" autocomplete="off">
@@ -122,16 +158,68 @@ footer a:hover{border-bottom-color:var(--accent)}
 </div>
 <main><div id="stats" class="stats"></div><div id="content"><div class="loading">読み込み中…</div></div></main>
 <footer><div class="signature">— Curated daily by Cowork —</div>Powered by Cowork × GitHub Pages ・ <a href="https://github.com/zerofdy/daily-trivia" target="_blank" rel="noopener">View source</a></footer>
+
+<!-- Topic detail modal -->
 <div class="modal-backdrop" id="modalBackdrop" role="dialog" aria-modal="true" aria-hidden="true"><div class="modal" id="modal"><button class="modal-close" id="modalClose" aria-label="閉じる"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button><div id="modalContent"></div></div></div>
+
+<!-- Settings modal -->
+<div class="modal-backdrop" id="settingsBackdrop" role="dialog" aria-modal="true" aria-hidden="true">
+  <div class="modal">
+    <button class="modal-close" id="settingsClose" aria-label="閉じる"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+    <div class="settings-modal-body">
+      <h2>設定</h2>
+      <p class="desc">希望キーワードを登録すると、毎朝の通常5トピックに加えて、各キーワードに関連する雑学が1つずつ追加で配信されます。「ワンピース」なら作品本編・悪魔の実・キャラ・海賊用語など、ゆるく関連するもの全般がテーマになります。</p>
+
+      <div class="settings-section">
+        <h3>希望キーワード</h3>
+        <div class="keyword-list" id="kwList"></div>
+        <div class="kw-input-row">
+          <input class="kw-input" id="kwInput" type="text" placeholder="例：宇宙、鉄道、料理…" maxlength="30" autocomplete="off">
+          <button class="btn-primary" id="kwAdd">追加</button>
+        </div>
+      </div>
+
+      <div class="settings-section">
+        <h3>GitHub Personal Access Token</h3>
+        <div class="pat-status" id="patStatus"><span class="dot"></span><span class="text">未設定</span></div>
+        <input class="pat-input" id="patInput" type="password" placeholder="github_pat_... （fine-grained token, Contents:Read&Write）" autocomplete="off">
+        <p class="pat-note">キーワードを repo に書き込むために必要です。ブラウザの localStorage に保存され、GitHub Pages 外には送られません。<br>取得：<a href="https://github.com/settings/personal-access-tokens/new" target="_blank" rel="noopener">github.com/settings/personal-access-tokens/new</a> （Repository: daily-trivia, Permissions: Contents Read&Write）</p>
+      </div>
+
+      <div class="save-row">
+        <span class="save-status" id="saveStatus"></span>
+        <button class="btn-primary" id="saveSettings">保存して反映</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <script>
 const READ_KEY='daily-trivia-read-v1';
+const PAT_KEY='daily-trivia-pat';
+const KW_CACHE_KEY='daily-trivia-keywords-cache';
+const GITHUB_USER='zerofdy';
+const GITHUB_REPO='daily-trivia';
 const GENRE_ORDER=['時事','IT','歴史','飲食','企業','ゲーム','漫画','人物','自然・生物','文化・言葉','その他'];
 const GENRE_COLOR={'時事':'#1e3a5f','IT':'#1e4a3d','歴史':'#4a3b1e','飲食':'#5a2e1e','企業':'#2e3e5e','ゲーム':'#3e1e5a','漫画':'#5a1e3e','人物':'#1e5a4a','自然・生物':'#2e5a1e','文化・言葉':'#5a4a1e','その他':'#3a3a3a'};
-const state={data:[],query:'',sort:'newest',activeTags:new Set(),activeGenres:new Set(),allTags:new Map(),allGenres:new Map(),flatList:[],currentIdx:-1,readSet:new Set(),unreadOnly:false};
+const state={data:[],query:'',sort:'newest',activeTags:new Set(),activeGenres:new Set(),allTags:new Map(),allGenres:new Map(),flatList:[],currentIdx:-1,readSet:new Set(),unreadOnly:false,keywords:[],prefsSha:null};
 
 function topicKey(item){return item.date+'|'+(item.topic.title||'');}
 function loadRead(){try{const raw=localStorage.getItem(READ_KEY);if(raw)return new Set(JSON.parse(raw));}catch(e){}return null;}
 function saveRead(){try{localStorage.setItem(READ_KEY,JSON.stringify([...state.readSet]));}catch(e){}}
+
+async function loadPreferences(){
+  try{
+    const res=await fetch('preferences.json?t='+Date.now());
+    if(!res.ok){state.keywords=[];return;}
+    const json=await res.json();
+    state.keywords=Array.isArray(json.keywords)?json.keywords:[];
+    localStorage.setItem(KW_CACHE_KEY,JSON.stringify(state.keywords));
+  }catch(e){
+    const cached=localStorage.getItem(KW_CACHE_KEY);
+    state.keywords=cached?JSON.parse(cached):[];
+  }
+}
 
 async function load(){
   try{
@@ -150,6 +238,7 @@ async function load(){
     const existing=loadRead();
     if(existing===null){state.readSet=new Set(all.map(topicKey));saveRead();}
     else{state.readSet=existing;}
+    await loadPreferences();
     collectFacets();renderChips();render();
   }catch(e){document.getElementById('content').innerHTML='<div class="empty"><h3>まだ雑学がありません</h3><p>data.json が空か未配置です</p></div>';}
 }
@@ -194,7 +283,7 @@ function highlight(text,query){const safe=escapeHtml(text);if(!query)return safe
 function formatDatePlain(dateStr){const[y,m,d]=dateStr.split('-');return `${y}.${m}.${d}`;}
 
 function matchesFilters(item,q){
-  if(q){const hay=((item.topic.title||'')+' '+(item.topic.body||'')+' '+(item.topic.tags||[]).join(' ')+' '+(item.topic.genre||'')).toLowerCase();if(!hay.includes(q.toLowerCase()))return false;}
+  if(q){const hay=((item.topic.title||'')+' '+(item.topic.body||'')+' '+(item.topic.tags||[]).join(' ')+' '+(item.topic.genre||'')+' '+(item.topic.requestedKeyword||'')).toLowerCase();if(!hay.includes(q.toLowerCase()))return false;}
   if(state.activeGenres.size>0){if(!state.activeGenres.has(item.topic.genre||'その他'))return false;}
   if(state.activeTags.size>0){const tagset=new Set(item.topic.tags||[]);for(const t of state.activeTags){if(!tagset.has(t))return false;}}
   if(state.unreadOnly&&state.readSet.has(topicKey(item)))return false;
@@ -207,23 +296,23 @@ function sortItems(items){
   return items.slice().sort((a,b)=>b.date.localeCompare(a.date));
 }
 
-function fallbackGlyph(genre){
-  // 各ジャンルの代表的な飾り文字（CSS背景に乗せる装飾）
-  const map={'時事':'今','IT':'IT','歴史':'史','飲食':'食','企業':'企','ゲーム':'G','漫画':'漫','人物':'人','自然・生物':'生','文化・言葉':'文','その他':'他'};
-  return map[genre]||genre;
-}
+function fallbackGlyph(genre){const map={'時事':'今','IT':'IT','歴史':'史','飲食':'食','企業':'企','ゲーム':'G','漫画':'漫','人物':'人','自然・生物':'生','文化・言葉':'文','その他':'他'};return map[genre]||genre;}
 
 function renderCard(item,query,flatIdx){
   const isUnread=!state.readSet.has(topicKey(item));
   const newBadge=isUnread?'<span class="card-new-badge">NEW</span>':'';
   const genre=item.topic.genre||'その他';
+  const kw=item.topic.requestedKeyword;
+  const topLeftBadge=kw
+    ? `<span class="card-keyword-badge">${escapeHtml(kw)}</span>`
+    : `<span class="card-genre-badge">${escapeHtml(genre)}</span>`;
   const bgColor=GENRE_COLOR[genre]||GENRE_COLOR['その他'];
   const hasImg=!!item.topic.image;
   const img=hasImg?`<img class="card-img" src="${escapeAttr(item.topic.image)}" alt="" loading="lazy" onerror="this.classList.add('failed');this.closest('.card').classList.add('img-failed');">`:'';
   const fallback=`<div class="card-fallback" style="background:${bgColor}"><span class="card-fallback-glyph">${escapeHtml(fallbackGlyph(genre))}</span></div>`;
   const cls=isUnread?' unread':'';
   const noImgCls=hasImg?'':' no-image';
-  return `<button class="card${cls}${noImgCls}" data-idx="${flatIdx}">${img}${fallback}<div class="card-gradient"></div><span class="card-genre-badge">${escapeHtml(genre)}</span>${newBadge}<span class="card-title">${highlight(item.topic.title||'',query)}</span></button>`;
+  return `<button class="card${cls}${noImgCls}" data-idx="${flatIdx}">${img}${fallback}<div class="card-gradient"></div>${topLeftBadge}${newBadge}<span class="card-title">${highlight(item.topic.title||'',query)}</span></button>`;
 }
 
 function render(){
@@ -259,12 +348,14 @@ function renderModal(){
   const item=state.flatList[state.currentIdx];if(!item)return;
   const{date,topic}=item;
   const genre=topic.genre||'その他';
+  const kw=topic.requestedKeyword;
   const img=topic.image?`<img class="modal-img" src="${escapeAttr(topic.image)}" alt="" onerror="this.style.display='none'">`:'';
   const news=topic.newsSource?`<p class="modal-news">${escapeHtml(topic.newsSource)}</p>`:'';
+  const kwBadge=kw?`<span class="modal-kw-badge">${escapeHtml(kw)}</span>`:'';
   const tags=(topic.tags||[]).map(t=>`<button class="modal-tag${state.activeTags.has(t)?' active':''}" data-tag="${escapeAttr(t)}">${escapeHtml(t)}</button>`).join('');
   const prevDisabled=state.currentIdx<=0?'disabled':'';
   const nextDisabled=state.currentIdx>=state.flatList.length-1?'disabled':'';
-  modalContent.innerHTML=`${img}<div class="modal-body"><div class="modal-meta"><button class="genre-badge${state.activeGenres.has(genre)?' active':''}" data-genre="${escapeAttr(genre)}">${escapeHtml(genre)}</button><span class="modal-date">${formatDatePlain(date)}</span></div>${news}<h2 class="modal-title">${escapeHtml(topic.title||'')}</h2><p class="modal-text">${escapeHtml(topic.body||'')}</p>${tags?`<div class="modal-tags">${tags}</div>`:''}<div class="modal-nav"><button class="modal-nav-btn" id="prevBtn" ${prevDisabled}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>前のトピック</button><button class="modal-nav-btn" id="nextBtn" ${nextDisabled}>次のトピック<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button></div></div>`;
+  modalContent.innerHTML=`${img}<div class="modal-body"><div class="modal-meta"><button class="genre-badge${state.activeGenres.has(genre)?' active':''}" data-genre="${escapeAttr(genre)}">${escapeHtml(genre)}</button>${kwBadge}<span class="modal-date">${formatDatePlain(date)}</span></div>${news}<h2 class="modal-title">${escapeHtml(topic.title||'')}</h2><p class="modal-text">${escapeHtml(topic.body||'')}</p>${tags?`<div class="modal-tags">${tags}</div>`:''}<div class="modal-nav"><button class="modal-nav-btn" id="prevBtn" ${prevDisabled}><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>前のトピック</button><button class="modal-nav-btn" id="nextBtn" ${nextDisabled}>次のトピック<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg></button></div></div>`;
   modalContent.querySelectorAll('.modal-tag').forEach(btn=>btn.addEventListener('click',(e)=>{e.stopPropagation();toggleTag(btn.dataset.tag);}));
   modalContent.querySelectorAll('.genre-badge').forEach(btn=>btn.addEventListener('click',(e)=>{e.stopPropagation();toggleGenre(btn.dataset.genre);}));
   const pb=document.getElementById('prevBtn');const nb=document.getElementById('nextBtn');
@@ -274,13 +365,84 @@ function renderModal(){
 
 backdrop.addEventListener('click',(e)=>{if(e.target===backdrop)closeModal();});
 document.getElementById('modalClose').addEventListener('click',closeModal);
-document.addEventListener('keydown',(e)=>{if(!modalOpen())return;if(e.key==='Escape')closeModal();else if(e.key==='ArrowLeft')navModal(-1);else if(e.key==='ArrowRight')navModal(1);});
+document.addEventListener('keydown',(e)=>{if(!modalOpen()&&!settingsOpen())return;if(e.key==='Escape'){if(settingsOpen())closeSettings();else closeModal();}else if(modalOpen()){if(e.key==='ArrowLeft')navModal(-1);else if(e.key==='ArrowRight')navModal(1);}});
 document.getElementById('search').addEventListener('input',e=>{state.query=e.target.value;render();});
 document.getElementById('sortBy').addEventListener('change',e=>{state.sort=e.target.value;render();});
 document.getElementById('unreadToggle').addEventListener('click',()=>{state.unreadOnly=!state.unreadOnly;render();});
 const ft=document.getElementById('filterToggle');
 ft.addEventListener('click',()=>{ft.classList.toggle('open');document.getElementById('filterPanel').classList.toggle('open');});
-load();
-</script>
-</body>
-</html>
+
+/* ===== Settings ===== */
+const settingsBackdrop=document.getElementById('settingsBackdrop');
+function settingsOpen(){return settingsBackdrop.classList.contains('open');}
+function openSettings(){renderSettings();settingsBackdrop.classList.add('open');settingsBackdrop.setAttribute('aria-hidden','false');document.body.classList.add('modal-open');}
+function closeSettings(){settingsBackdrop.classList.remove('open');settingsBackdrop.setAttribute('aria-hidden','true');document.body.classList.remove('modal-open');}
+
+function renderSettings(){
+  const list=document.getElementById('kwList');
+  list.innerHTML=state.keywords.map((k,i)=>`<span class="kw-pill">${escapeHtml(k)}<button class="remove" data-i="${i}" aria-label="削除">×</button></span>`).join('');
+  list.querySelectorAll('.remove').forEach(b=>b.addEventListener('click',()=>{
+    state.keywords.splice(parseInt(b.dataset.i,10),1);
+    renderSettings();
+  }));
+  const patStatus=document.getElementById('patStatus');
+  const hasPat=!!localStorage.getItem(PAT_KEY);
+  patStatus.classList.toggle('ok',hasPat);
+  patStatus.classList.toggle('missing',!hasPat);
+  patStatus.querySelector('.text').textContent=hasPat?'保存済み（変更する場合のみ下に入力）':'未設定';
+  document.getElementById('patInput').value='';
+  document.getElementById('saveStatus').textContent='';
+}
+
+document.getElementById('settingsBtn').addEventListener('click',openSettings);
+document.getElementById('settingsClose').addEventListener('click',closeSettings);
+settingsBackdrop.addEventListener('click',(e)=>{if(e.target===settingsBackdrop)closeSettings();});
+document.getElementById('kwAdd').addEventListener('click',()=>{
+  const inp=document.getElementById('kwInput');
+  const v=inp.value.trim();
+  if(!v)return;
+  if(state.keywords.includes(v)){inp.value='';return;}
+  if(state.keywords.length>=10){
+    document.getElementById('saveStatus').textContent='最大10件まで登録できます';
+    document.getElementById('saveStatus').className='save-status error';
+    return;
+  }
+  state.keywords.push(v);
+  inp.value='';
+  renderSettings();
+});
+document.getElementById('kwInput').addEventListener('keydown',e=>{if(e.key==='Enter'){e.preventDefault();document.getElementById('kwAdd').click();}});
+
+async function saveSettings(){
+  const status=document.getElementById('saveStatus');
+  const newPat=document.getElementById('patInput').value.trim();
+  if(newPat){
+    if(!newPat.startsWith('github_pat_')&&!newPat.startsWith('ghp_')){
+      status.textContent='PAT の形式が正しくありません';status.className='save-status error';return;
+    }
+    localStorage.setItem(PAT_KEY,newPat);
+  }
+  const pat=localStorage.getItem(PAT_KEY);
+  if(!pat){status.textContent='PAT が設定されていません';status.className='save-status error';return;}
+
+  status.textContent='保存中…';status.className='save-status';
+  const btn=document.getElementById('saveSettings');btn.disabled=true;
+  try{
+    // Get current SHA
+    const ghHeaders={'Authorization':`Bearer ${pat}`,'Accept':'application/vnd.github+json','X-GitHub-Api-Version':'2022-11-28'};
+    const getRes=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/preferences.json`,{headers:ghHeaders});
+    if(!getRes.ok)throw new Error(`GitHub GET ${getRes.status}: ${await getRes.text()}`);
+    const cur=await getRes.json();
+    const newContent=JSON.stringify({keywords:state.keywords},null,2)+'\n';
+    const encoded=btoa(unescape(encodeURIComponent(newContent)));
+    const putRes=await fetch(`https://api.github.com/repos/${GITHUB_USER}/${GITHUB_REPO}/contents/preferences.json`,{
+      method:'PUT',headers:ghHeaders,
+      body:JSON.stringify({message:`Update keywords (${state.keywords.length} items) via site`,content:encoded,sha:cur.sha})
+    });
+    if(!putRes.ok)throw new Error(`GitHub PUT ${putRes.status}: ${await putRes.text()}`);
+    localStorage.setItem(KW_CACHE_KEY,JSON.stringify(state.keywords));
+    status.textContent=`✓ 保存しました（${state.keywords.length}件）`;status.className='save-status success';
+    setTimeout(()=>{renderSettings();},800);
+  }catch(e){
+    status.textContent='エラー: '+e.message.slice(0,120);status.className='save-status error';
+  
