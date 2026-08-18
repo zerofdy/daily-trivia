@@ -1,6 +1,71 @@
 {
   "entries": [
     {
+      "date": "2026-08-19",
+      "topics": [
+        {
+          "title": "通信確認に使う「ping」の名前は、潜水艦ソナーの「ピーン」という音から来ている",
+          "body": "ネットワークの疎通を確かめる定番コマンド「ping」。\nこの名前は、開発者マイク・ムースが1983年に約200行のCで書いたときに付けたものだ。\n由来は、潜水艦などが使うソナーが発する「ピーン」という音。\n音波を出して跳ね返りを聞き、相手の距離を測るソナーの仕組みが、\n「パケットを送って返事が返るまでを測る」pingの動きとそっくりだったからだ。\n後付けで「Packet InterNet Groper」の略と説明されることもあるが、\nムース本人はこれを「あとから作られた語呂合わせ」と否定している。\n翌1984年にBSD UNIXに標準搭載され、世界中に広まった。",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/Sonar_Principle_EN.svg/langja-330px-Sonar_Principle_EN.svg.png?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "ping",
+            "ネットワーク",
+            "IT用語",
+            "ソナー"
+          ],
+          "genre": "IT"
+        },
+        {
+          "title": "日本のキャラクタービジネスの草分けは、軍隊で出世する野良犬の漫画『のらくろ』だった",
+          "body": "『のらくろ』は、田河水泡が1931年（昭和6年）の『少年倶楽部』新年号から連載を始めた漫画だ。\n主人公は天涯孤独の野良犬「のらくろ（黒吉）」。\n犬だけの軍隊「猛犬連隊」に二等卒として入り、失敗を繰り返しながらも少しずつ出世していく。\n全国の子どもたちの圧倒的な人気を集め、雑誌の売れ行きを大きく押し上げた。\nさらにアニメやレコード、グッズまで大量に作られ、\n今でいう「キャラクタービジネス」の先駆けになった。\n連載は戦争や紙不足による中断をはさみつつ、最終的に1980年代まで続いた。",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/%E3%81%AE%E3%82%89%E3%81%8F%E3%82%8D%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA_%2848009801263%29.jpg/640px-%E3%81%AE%E3%82%89%E3%81%8F%E3%82%8D%E3%82%B7%E3%83%AA%E3%83%BC%E3%82%BA_%2848009801263%29.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "のらくろ",
+            "田河水泡",
+            "漫画史",
+            "昭和"
+          ],
+          "genre": "漫画"
+        },
+        {
+          "title": "ゲーム大手「セガ（SEGA）」の社名は、「サービス・ゲームス」の頭文字をつないだものだ",
+          "body": "セガの社名は、前身の会社「サービス ゲームス（Service Games）」に由来する。\n英語の SErvice と GAmes からそれぞれ頭2文字を取り、「SE＋GA」でセガになった。\nもとは戦後の日本で、駐留米軍向けにジュークボックスやスロットマシンなどの\n娯楽機器を扱っていた会社が源流だ。\n1965年に別会社と合併して「セガ・エンタープライゼス」となり、\nやがてアーケードや家庭用ゲームの大手へと成長していく。\n「エンタテインメントを通じて社会に奉仕する」という思いも社名に込められているという。",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/3/32/Osaki_Garden_Tower.jpg/640px-Osaki_Garden_Tower.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "セガ",
+            "SEGA",
+            "社名の由来",
+            "ゲーム"
+          ],
+          "genre": "ゲーム"
+        },
+        {
+          "title": "寿司ネタの「いくら」は、魚の卵を意味するロシア語「ikra」から来た外来語だ",
+          "body": "「いくら」は、もともとロシア語の「икра（ikra）」から借りてきた言葉だ。\nロシア語のikraは魚の卵全般を指し、キャビアも含めて広く使われる。\nロシアでは、チョウザメの卵（キャビア）を「黒いいくら」、\nサケの卵を「赤いいくら」と呼び分けている。\nかつて日本では、卵巣ごとのもの（すじこ）と粒にほぐしたものを区別する名前がなかった。\nそこへロシア人が粒状のサケの卵を「イクラ」と呼ぶのを見た日本人が、\nその粒状のものを指す言葉として「いくら」を取り入れたとされる。",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d2/Ikura.jpg/640px-Ikura.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "いくら",
+            "語源",
+            "ロシア語",
+            "食べ物"
+          ],
+          "genre": "文化・言葉"
+        },
+        {
+          "title": "地球上で人間を最も多く殺している生き物は、ライオンでもサメでもなく「蚊」だ",
+          "body": "人を襲う危険な動物というとサメやライオンを思い浮かべがちだが、\n実際に最も多くの人命を奪っているのは小さな「蚊」だ。\n蚊そのものの毒ではなく、血を吸うときに媒介する病気が原因になる。\n代表的なのがマラリアで、世界では年間およそ2億人以上が感染し、\n数十万人が命を落としているとされる。\nほかにもデング熱や黄熱、日本脳炎など、蚊が運ぶ感染症は数多い。\n年間の死者数を合わせると、蚊は「人間を最も多く殺す動物」とされることが多い。",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/AnophelesGambiaemosquito.jpg/640px-AnophelesGambiaemosquito.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "蚊",
+            "マラリア",
+            "感染症",
+            "生き物"
+          ],
+          "genre": "自然・生物"
+        }
+      ]
+    },
+    {
       "date": "2026-08-18",
       "topics": [
         {
