@@ -1,6 +1,70 @@
 {
   "entries": [
     {
+      "date": "2026-08-26",
+      "topics": [
+        {
+          "title": "テトリスでおなじみのメロディーは、19世紀ロシアの行商人の民謡が原曲だ",
+          "body": "落ちてくるブロックを積み上げるパズルゲーム『テトリス』。\nプレイ中に流れる、耳に残るあのメロディーを覚えている人も多いだろう。\nこの曲は「コロブチカ」といい、もともとはゲームとは関係のない19世紀ロシアの民謡だ。\n歌詞は、行商人（コロブチカ）と若い娘のやり取りを描いた恋の歌になっている。\n詩人ネクラーソフの詩に節がつけられ、ロシアで古くから親しまれてきた。\nそれがゲーム版のテーマ曲として世界中に広まり、今ではテトリスの代名詞のような存在になっている。",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Typical_Tetris_Game.svg/langja-330px-Typical_Tetris_Game.svg.png?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "ゲーム",
+            "テトリス",
+            "音楽",
+            "ロシア"
+          ],
+          "genre": "ゲーム"
+        },
+        {
+          "title": "付箋「ポスト・イット」は、失敗作の“くっつかない接着剤”から生まれた",
+          "body": "貼ってはがせる付箋「ポスト・イット」は、実は開発の“失敗”から生まれた商品だ。\n1968年、化学メーカー3Mの研究者が、強力な接着剤を目指して開発を進めていた。\nところが出来上がったのは、すぐにはがれてしまう「くっつく力の弱い」接着剤だった。\n使い道が見つからず、しばらくはお蔵入りの状態が続いたという。\n数年後、別の社員が本の栞がずり落ちるのに困り、この弱い糊を塗ったしおりを思いつく。\nはがしても跡が残らず何度でも貼り直せる——この発想が、やがて世界的な文房具になった。",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Gi%E1%BA%A5y_ghi_vi%E1%BB%87c_in_s%E1%BA%B5n-Preprinted_Post_it_notes.JPG/640px-Gi%E1%BA%A5y_ghi_vi%E1%BB%87c_in_s%E1%BA%B5n-Preprinted_Post_it_notes.JPG?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "企業",
+            "3M",
+            "発明",
+            "文房具"
+          ],
+          "genre": "企業"
+        },
+        {
+          "title": "『ドラえもん』は6つの雑誌で同時に、それぞれ内容を変えて連載が始まった",
+          "body": "国民的漫画『ドラえもん』は、1970年に連載がスタートした。\n意外なのは、はじめから一つの雑誌ではなく、6つの雑誌で同時に始まった点だ。\n小学館の幼児誌『よいこ』『幼稚園』と、『小学一年生』から『小学四年生』までの学年別学習雑誌である。\n作者の藤子・F・不二雄は、読者の年齢に合わせて内容を描き分けていた。\nそのため同じ月でも、掲載誌によって話の中身やページ数、絵の描き方まで違っていた。\n幅広い世代に愛される作品の土台には、この丁寧な描き分けがあったのかもしれない。",
+          "image": "https://upload.wikimedia.org/wikipedia/ja/thumb/5/51/Doraemon-no-akichi.JPG/640px-Doraemon-no-akichi.JPG?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "漫画",
+            "ドラえもん",
+            "藤子・F・不二雄"
+          ],
+          "genre": "漫画"
+        },
+        {
+          "title": "洋菓子のエクレアは、フランス語で「稲妻」を意味する",
+          "body": "細長いシュー生地にクリームを詰め、チョコをかけた洋菓子「エクレア」。\nこの名前はフランス語の「éclair」で、「稲妻」という意味を持つ。\nなぜ稲妻なのかにははっきりした定説がなく、いくつかの説が語られている。\n表面にかけたチョコの照りが、ぴかりと光る稲妻のように見えるから、という説。\nクリームがこぼれる前に、稲妻のように素早く食べてしまうから、という説もある。\nおいしそうな見た目の裏に、少し謎めいた由来が隠れているお菓子だ。",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e4/Liebesknochen1.JPG/640px-Liebesknochen1.JPG?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "飲食",
+            "お菓子",
+            "フランス",
+            "言葉の由来"
+          ],
+          "genre": "飲食"
+        },
+        {
+          "title": "ホタテは殻のふちに、数十個から200個近くもの小さな目を持っている",
+          "body": "貝柱がおいしいホタテだが、その体には驚くほどたくさんの「目」がそなわっている。\n貝殻を開いたときにふちに並ぶ黒い小さな粒、あれがホタテの目だ。\nその数は数十個から、多いものでは200個近くにもなるといわれている。\n色や形まではっきり見分けられるわけではなく、明るさや影の変化をとらえる程度だ。\nそれでも近づく天敵の影を察知して、貝を閉じたり泳いで逃げたりするのに役立っている。\n目の裏には鏡のような組織があり、光を反射させて感度を高めているという。",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/59/Japan_sea_animal%2C_Ezo_giant_scallop_%28Mizuhopecten_yessoensis%29_%2815152229484%29.jpg/640px-Japan_sea_animal%2C_Ezo_giant_scallop_%28Mizuhopecten_yessoensis%29_%2815152229484%29.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "自然・生物",
+            "貝",
+            "海の生き物",
+            "体のふしぎ"
+          ],
+          "genre": "自然・生物"
+        }
+      ]
+    },
+    {
       "date": "2026-08-25",
       "topics": [
         {
