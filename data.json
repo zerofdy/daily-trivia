@@ -1,6 +1,72 @@
 {
   "entries": [
     {
+      "date": "2026-08-25",
+      "topics": [
+        {
+          "title": "アメリカの中間選挙では、時の大統領の政党がほぼ必ず議席を減らす",
+          "body": "アメリカでは大統領選の中間の年に、連邦議会の議員などを選ぶ「中間選挙」が行われる。\n興味深いのは、大統領が所属する与党が下院で議席を減らすのがほとんど恒例になっている点だ。\n1934年以降、与党が下院で議席を増やせたのは1998年と2002年のわずか2回しかない。\n景気や物価への不満が現政権への評価としてぶつけられやすいことが、大きな理由とされる。\nそのため中間選挙は「政権の通信簿」とも呼ばれ、大統領の後半2年の政治運営を左右する分かれ目になる。",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a7/Oklahoma_general_election_ballot_for_2018.png/640px-Oklahoma_general_election_ballot_for_2018.png?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "アメリカ",
+            "選挙",
+            "政治",
+            "歴史"
+          ],
+          "genre": "時事",
+          "newsSource": "米中間選挙が約3か月後に迫り、物価高が政局の焦点になっているとの報道を起点に"
+        },
+        {
+          "title": "メールアドレスの「@」は、イタリアでは「小さなカタツムリ」と呼ばれている",
+          "body": "電子メールでおなじみの「@」は、もともと商業で「単価」を表す記号として使われていた。\n1971年、技術者レイ・トムリンソンがネットワーク越しにメールを送る際、人名と機械名を区切る記号としてこれを選んだ。\nおもしろいのは、この渦巻き状の形が国によってまったく違う愛称で呼ばれている点だ。\nイタリアでは「chiocciola（キオッチョラ＝小さなカタツムリ）」、オランダやドイツでは「サルのしっぽ」と呼ばれる。\n日本では単に「アットマーク」だが、世界では動物に見立てたユニークな呼び名が定着している。",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/%40_symbol.svg/langja-330px-%40_symbol.svg.png?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "IT",
+            "メール",
+            "言葉",
+            "雑学"
+          ],
+          "genre": "IT"
+        },
+        {
+          "title": "英語の「パイナップル」は、もともと松ぼっくりを指す言葉だった",
+          "body": "パイナップルは英語で「pineapple」と書くが、これは「pine（松）」と「apple（りんご）」を合わせた言葉だ。\nじつは14世紀ごろの英語では、この「pineapple」という単語は松の木の実、つまり松ぼっくりを意味していた。\n大航海時代にヨーロッパ人が南米で例の果実に出会ったとき、その見た目が松ぼっくりにそっくりだった。\nそこで同じ名前で呼ばれるようになり、やがて果物のほうが「pineapple」の座を奪ってしまった。\n松ぼっくりのほうは、後から「pine cone」という別の呼び名に置きかわっていった。",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/b/be/Ananas_pflanze.jpg/640px-Ananas_pflanze.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "飲食",
+            "果物",
+            "言葉",
+            "歴史"
+          ],
+          "genre": "飲食"
+        },
+        {
+          "title": "ペプシコーラは、もともと消化を助ける薬用ドリンクとして薬局で売り出された",
+          "body": "ペプシは1893年、アメリカの薬剤師カレブ・ブラダムが自分の薬局で売り始めた飲み物が始まりだ。\n当初は「ブラッズ・ドリンク」という名前で、胃もたれや消化不良にきく健康ドリンクとして宣伝されていた。\n1898年に改名された「ペプシコーラ」の名は、消化不良を意味する「dyspepsia」と原料のコラの実に由来する。\n初期の広告には「爽快・元気回復・消化を助ける」といった、まるで胃薬のような文句が並んでいた。\n甘い炭酸飲料としてではなく、体によい飲み物として世に出たのが、意外なスタートだった。",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Pepsi_2023.svg/langja-330px-Pepsi_2023.svg.png?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "企業",
+            "飲料",
+            "歴史",
+            "ブランド"
+          ],
+          "genre": "企業"
+        },
+        {
+          "title": "南極には郵便局があり、スタッフの仕事のひとつはペンギンの数を数えることだ",
+          "body": "南極半島のポート・ロックロイには、世界で最も南にある郵便局のひとつが今も営業している。\n夏の観光シーズンには4人ほどのスタッフが常駐し、世界中から届く7万通もの郵便物やはがきを処理する。\nこの郵便局のもうひとつの大切な任務が、すぐそばで暮らす約1,500羽のジェンツーペンギンの数を数えることだ。\n観光客の訪問がペンギンにどんな影響を与えるかを調べるため、その記録は研究機関へ届けられる。\n電気も水道も乏しい極寒の地で、切手を売りながらペンギンを見守る、世界一風変わりな職場といえる。",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Port_Lockroy_1962.jpg/640px-Port_Lockroy_1962.jpg?utm_source=en.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "その他",
+            "南極",
+            "ペンギン",
+            "郵便"
+          ],
+          "genre": "その他"
+        }
+      ]
+    },
+    {
       "date": "2026-08-24",
       "topics": [
         {
