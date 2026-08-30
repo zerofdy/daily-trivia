@@ -1,6 +1,72 @@
 {
   "entries": [
     {
+      "date": "2026-08-31",
+      "topics": [
+        {
+          "title": "「防災の日」が9月1日に定められたのは、関東大震災が起きた日だからだ",
+          "body": "毎年9月1日は「防災の日」。1923年（大正12年）のこの日、午前11時58分にマグニチュード7.9と推定される関東大震災が発生し、死者・行方不明者は10万人を超えた。\n加えて、9月はちょうど台風が多く襲来する時期でもある。この二つの理由から、災害への備えを見直す日として1960年に制定された。\n前後の8月30日〜9月5日は「防災週間」とされ、全国で避難訓練などが行われる。夏休みが明けるこの時期、家庭の防災グッズを点検するのにちょうどよい節目だ。",
+          "genre": "時事",
+          "newsSource": "8月31日は多くの学校で夏休みの最終日。翌9月1日は防災の日",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/3/3a/Kanto-daishinsai.jpg/640px-Kanto-daishinsai.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "防災の日",
+            "関東大震災",
+            "歴史",
+            "豆知識"
+          ]
+        },
+        {
+          "title": "『パックマン』の名は、日本語の擬音「パクパク」から生まれた",
+          "body": "1980年にナムコが世に出した『パックマン』。丸い体でエサを食べ続けるあの主人公の名は、ものを食べる様子を表す日本語の擬音「パクパク」に由来する。\n当初、英語表記は「PUCK MAN」だった。しかし筐体の文字が悪戯で書き換えられ、下品な単語に見えてしまう恐れがあったため、北米では「PAC-MAN」に改められた。\n世界的な大ヒットとなり、キャラクターがそのままゲームの主役を務める先駆けにもなった。",
+          "genre": "ゲーム",
+          "image": "",
+          "tags": [
+            "パックマン",
+            "ナムコ",
+            "ゲーム史",
+            "名前の由来"
+          ]
+        },
+        {
+          "title": "手塚治虫のペンネームの「虫」は、甲虫のオサムシにちなんでいる",
+          "body": "『鉄腕アトム』などで知られる漫画の神様・手塚治虫。本名は「手塚治（おさむ）」だが、少年時代の大の昆虫好きが高じて「虫」の一字を加えた。\n由来となったのは、地面を歩く甲虫「オサムシ」。当初は「オサムシ」と読ませるつもりだったとも伝えられる。\n手塚家の広い庭は虫の宝庫で、彼は熱心に昆虫採集に打ち込んだ。その情熱が、そのままペンネームに刻まれている。",
+          "genre": "漫画",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1d/Osamu_Tezuka_1951_Scan10008-2.JPG/640px-Osamu_Tezuka_1951_Scan10008-2.JPG?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "手塚治虫",
+            "漫画",
+            "ペンネーム",
+            "昆虫"
+          ]
+        },
+        {
+          "title": "ピラミッドを造ったのは奴隷ではなく、パンとビールで報われた労働者だった",
+          "body": "巨大なピラミッドは、鞭で打たれる奴隷が造ったと長く思われてきた。だが近年の発掘で、その常識は覆されている。\n建設現場の近くからは労働者の住居跡やパン・ビールの製造施設、治療の痕がある人骨まで見つかっている。彼らは国家に雇われた石工や運搬の専門職で、報酬としてパンやビールを受け取っていた。\nナイル川が氾濫して農作業ができない時期に、多くの農民が現場に加わっていたとも考えられている。",
+          "genre": "歴史",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/5/51/Great_Pyramid_Giza_%282%29.jpg/640px-Great_Pyramid_Giza_%282%29.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "エジプト",
+            "ピラミッド",
+            "古代史",
+            "考古学"
+          ]
+        },
+        {
+          "title": "「サボる」は、フランス語「サボタージュ」を略して動詞にした言葉だ",
+          "body": "授業や仕事を怠けることを指す「サボる」。もとはフランス語の「サボタージュ（sabotage）」を略し、日本語の動詞のように「〜る」を付けて造られた言葉だ。\nサボタージュ自体は、労働争議で作業を妨害・停滞させる行為を指す。その語源は木靴「サボ（sabot）」で、不満を抱いた労働者が機械にサボを投げ入れて壊した、という説がある。\nフランス語の重い意味と比べると、日本の「サボる」はずいぶん軽やかな言葉になった。",
+          "genre": "文化・言葉",
+          "image": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/89/Wooden_Shoes-willow-plain_wood.jpg/640px-Wooden_Shoes-willow-plain_wood.jpg?utm_source=fr.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "言葉の由来",
+            "フランス語",
+            "サボる",
+            "雑学"
+          ]
+        }
+      ]
+    },
+    {
       "date": "2026-08-30",
       "topics": [
         {
