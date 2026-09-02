@@ -1,6 +1,72 @@
 {
   "entries": [
     {
+      "date": "2026-09-03",
+      "topics": [
+        {
+          "title": "アメリカの「中間選挙」は、大統領の任期のちょうど真ん中に行われるから中間と呼ばれる",
+          "body": "アメリカ大統領の任期は4年だが、その2年目にあたる年に行われるのが中間選挙だ。\n大統領選と重ならない「任期の中間」に置かれるため、この名で呼ばれる。\nこのとき下院の全議席と、上院の約3分の1の議席が改選される。\n大統領本人は選ばれないが、政権への評価を映す「中間テスト」のような性格を持つ。\n与党が議席を減らすことも多く、その後の政権運営を大きく左右する。",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4b/Seal_of_the_United_States_Congress.svg/langja-330px-Seal_of_the_United_States_Congress.svg.png?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "アメリカ",
+            "選挙",
+            "政治",
+            "制度"
+          ],
+          "genre": "時事",
+          "newsSource": "中間選挙まで2か月、共和・民主の選挙戦が激化"
+        },
+        {
+          "title": "「Wi-Fi」は何かの略語ではなく、語呂の良さで生まれたブランド名だ",
+          "body": "無線LANの規格「IEEE 802.11b」は正式名が難しく、一般には覚えられなかった。\nそこで業界団体はブランディング会社に依頼し、親しみやすい呼び名を作らせた。\n高音質を意味する「Hi-Fi（ハイファイ）」の響きにあやかって「Wi-Fi」が生まれた。\nつまり本来は何の頭文字でもなく、語感だけで決められた造語だった。\n後から「Wireless Fidelity」の略だと説明が付けられたが、これは後付けの意味づけにすぎない。",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d6/Wi-Fi.svg/langja-330px-Wi-Fi.svg.png?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "Wi-Fi",
+            "無線",
+            "ネーミング",
+            "IT"
+          ],
+          "genre": "IT"
+        },
+        {
+          "title": "カバがかく「赤い汗」は血ではなく、天然の日焼け止めと消毒薬をかねている",
+          "body": "カバの皮膚からにじむ赤みがかった分泌物は、しばしば「血の汗」と誤解される。\nしかし正体は血液ではなく、カバ自身が出す特殊な体液だ。\nこの液は紫外線を吸収し、強い日差しから皮膚を守る日焼け止めの役割を果たす。\nさらに雑菌の繁殖を抑える働きもあり、傷の化膿を防ぐ天然の消毒薬にもなる。\n水辺を離れて乾きやすいカバにとって、欠かせない体の仕組みだ。",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/aa/Nijlpaard.jpg/640px-Nijlpaard.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "カバ",
+            "動物",
+            "生物",
+            "雑学"
+          ],
+          "genre": "自然・生物"
+        },
+        {
+          "title": "ドラえもんに耳がなく体が青いのは、ネズミに耳をかじられた事故がきっかけだ",
+          "body": "ドラえもんはもともと黄色い体で、丸い耳もついたロボットだった。\nある日、昼寝中にネズミ型ロボットへ耳をかじり取られてしまう。\n耳を失ったショックと悲しみで青ざめ、体の色まで青く変わってしまったとされる。\nこの出来事が、ドラえもんが極端にネズミを怖がる理由にもなっている。\n今の丸くて青い姿の裏には、こうした苦い過去の設定が隠されている。",
+          "image": "https://thumb.wikimedia.org/wikipedia/ja/thumb/5/51/Doraemon-no-akichi.JPG/640px-Doraemon-no-akichi.JPG?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "ドラえもん",
+            "漫画",
+            "藤子・F・不二雄",
+            "設定"
+          ],
+          "genre": "漫画"
+        },
+        {
+          "title": "マリオの名前は、任天堂アメリカ支社に倉庫を貸していた大家からとられた",
+          "body": "1980年代初め、任天堂のアメリカ支社は倉庫を借りて事業を進めていた。\nその建物の大家が、イタリア系アメリカ人のマリオ・セガール氏だった。\n『ドンキーコング』の主人公の名前が決まらず社員が悩んでいたある日、彼が家賃の催促に現れる。\nその風貌と勢いから、社員たちはキャラクターに「マリオ」と名付けたと伝わる。\n生みの親の宮本茂も、名前がセガール氏に由来することを後に認めている。",
+          "image": "",
+          "tags": [
+            "マリオ",
+            "任天堂",
+            "ゲーム",
+            "名前の由来"
+          ],
+          "genre": "ゲーム"
+        }
+      ]
+    },
+    {
       "date": "2026-09-02",
       "topics": [
         {
