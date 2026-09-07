@@ -1,6 +1,68 @@
 {
   "entries": [
     {
+      "date": "2026-09-08",
+      "topics": [
+        {
+          "title": "9月8日の「国際識字デー」は、世界で読み書きできない人を減らすために設けられた",
+          "body": "9月8日はユネスコが1966年に定めた「国際識字デー(International Literacy Day)」。\n読み書きや計算ができる能力を「識字(リテラシー)」と呼び、これは教育や仕事、健康を守るうえで土台となる力とされる。\nきっかけは1965年にイランで開かれた識字に関する国際会議で、翌年ユネスコがこの日を記念日に制定した。\n世界にはいまも読み書きに困難を抱える大人が数億人いるとされ、その多くは女性が占める。\n毎年テーマを決めて、識字の大切さを世界に呼びかける日になっている。",
+          "tags": [
+            "国際識字デー",
+            "ユネスコ",
+            "教育"
+          ],
+          "genre": "時事",
+          "newsSource": "9月8日は国際識字デー(ユネスコ制定の記念日)",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/a/a6/Literacy_rate_world.PNG/640px-Literacy_rate_world.PNG?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "title": "携帯電話で世界を席巻したノキアは、もともとフィンランドの製紙会社として始まった",
+          "body": "かつて携帯電話の世界シェア首位に立ったフィンランドのノキア。\nその起源は1865年、技術者フレドリク・イデスタムが川沿いに建てた製紙工場にさかのぼる。\n社名は、二つ目の工場を建てた土地を流れる「ノキア川」に由来するとされる。\nその後、ゴム長靴やケーブル、テレビなど幅広い事業に手を広げ、20世紀後半に通信機器へ本格参入した。\n紙づくりから始まった会社が、やがて世界の携帯電話をリードする存在へと姿を変えたことになる。",
+          "tags": [
+            "ノキア",
+            "企業",
+            "フィンランド",
+            "携帯電話"
+          ],
+          "genre": "企業",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9a/Midpoint_Nokia_Karaportti.jpg/640px-Midpoint_Nokia_Karaportti.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "title": "きちんとした人を表す「几帳面」は、平安時代の家具「几帳」の丁寧な作りに由来する",
+          "body": "真面目できちんとした性格を「几帳面(きちょうめん)」と言う。\nこの言葉のもとになったのは、平安時代に室内の仕切りや目隠しに使われた「几帳」という家具だ。\n几帳を支える柱は、角を細かく削って丸みをつけ、両側に刻みを入れる凝った加工が施されていた。\nこの手の込んだ面の仕上げを「几帳面(きちょうづら)」と呼んだ。\nそこから、細かいところまで手を抜かず整える様子を「几帳面」と言うようになったとされる。",
+          "tags": [
+            "几帳面",
+            "言葉の由来",
+            "平安時代"
+          ],
+          "genre": "文化・言葉",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/b/b1/Kicho.jpg/640px-Kicho.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "title": "江戸の火消しは、水をかけるより周りの家を壊して延焼を止めるのが主な仕事だった",
+          "body": "火事の多かった江戸の町で活躍したのが「火消し」だ。\n当時は強力なポンプがなく、水をかけて火を消すのは難しかった。\nそのため火消しの主な仕事は、燃えている家の風下の建物を壊し、火が燃え移る「燃料」を断って延焼を食い止める「破壊消防」だった。\n屋根に上って家をこわす、勇ましく身軽な鳶職の人々がその担い手だった。\n各組が掲げる「纏(まとい)」は、自分たちの持ち場を示す目印であり、意地とほこりの象徴でもあった。",
+          "tags": [
+            "火消し",
+            "江戸時代",
+            "消防"
+          ],
+          "genre": "歴史",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/16/Musashiabumi_Great_Fire_of_Meireki.jpg/640px-Musashiabumi_Great_Fire_of_Meireki.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        },
+        {
+          "title": "タコには心臓が3つあり、血液は銅を含むため赤ではなく青っぽい色をしている",
+          "body": "タコの体には、心臓が全部で3つある。\n2つはえらに血液を送る「えら心臓」で、残る1つが全身へ血を巡らせる役割を持つ。\nさらにタコの血液は、酸素を運ぶ成分に鉄ではなく銅を使う「ヘモシアニン」を含む。\nこのため、酸素と結びつくと赤ではなく青みがかった色になる。\n冷たく酸素の少ない海でも効率よく酸素を運べる、タコならではの体のしくみだ。",
+          "tags": [
+            "タコ",
+            "生物",
+            "心臓"
+          ],
+          "genre": "自然・生物",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/d/d7/Octopoda_montage.jpg/640px-Octopoda_montage.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail"
+        }
+      ]
+    },
+    {
       "date": "2026-09-07",
       "topics": [
         {
