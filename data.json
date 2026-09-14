@@ -1,6 +1,110 @@
 {
   "entries": [
     {
+      "date": "2026-09-15",
+      "topics": [
+        {
+          "title": "郵便記号「〒」は、かつての逓信省のカタカナ「テ」を図案化したものだ",
+          "body": "郵便物によく使われるマーク「〒」は、日本独自の記号だ。\n1887年、郵便事業を管轄していた「逓信省（ていしんしょう）」の頭文字「テ」をデザイン化したものだとされる。\n当初は丸に「テ」の案もあったが、最終的に今の横線と縦線を組み合わせた形に落ち着いた。\n世界共通の記号ではないため、海外では通じないことも多い。\nちなみに郵便番号の前に付ける習慣も日本ならではのものだ。",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/cd/Postal_Mark_%28Japan%29.svg/langja-330px-Postal_Mark_%28Japan%29.svg.png?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "郵便",
+            "記号",
+            "日本",
+            "雑学"
+          ],
+          "genre": "その他"
+        },
+        {
+          "title": "古代ローマ皇帝ウェスパシアヌスは公衆便所の尿に税金をかけ「金は臭わない」と言い放った",
+          "body": "1世紀のローマ皇帝ウェスパシアヌスは、財政を立て直すため公衆トイレに集まる尿に課税した。\n当時の尿は、洗濯や羊毛の脱脂に使うアンモニア源として売買される「商品」だったのだ。\n息子が「尿から税を取るのは下品だ」と抗議すると、皇帝は税収の硬貨を鼻に近づけ「臭うか？」と問うた。\nここから「金は臭わない（Pecunia non olet）」ということわざが生まれたと伝わる。\nお金に貴賤はない、という意味で今も使われる言葉だ。",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/6/64/Vespasianus01_pushkin_edit.png/640px-Vespasianus01_pushkin_edit.png?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "古代ローマ",
+            "税金",
+            "歴史",
+            "ことわざ"
+          ],
+          "genre": "歴史"
+        },
+        {
+          "title": "英語の「sinister（不吉な）」の語源は、ラテン語で「左」を意味する言葉だ",
+          "body": "英語で「不吉な・邪悪な」を意味する sinister は、もとをたどるとラテン語の sinister（＝左）にたどり着く。\n古代では右を吉、左を凶とする文化が各地にあり、左に不吉なイメージが結び付いていった。\n逆に「器用な・正しい」を意味する dexterous は、ラテン語の dexter（＝右）が語源だ。\n日本語でも「左遷」のように、左を下に見る言い回しが残っている。\n言葉の端々に、昔の人の右利き優位の世界観が化石のように残っている。",
+          "image": "",
+          "tags": [
+            "英語",
+            "語源",
+            "左右",
+            "言葉"
+          ],
+          "genre": "文化・言葉"
+        },
+        {
+          "title": "バナナは植物学的には「ベリー（液果）」に分類されるが、イチゴはベリーではない",
+          "body": "果物の分類には、日常の感覚と植物学の定義でズレがあることが多い。\n植物学でいう「ベリー（液果）」とは、一つの子房から育ち、果肉の中に種を含む果実のこと。\nこの定義だと、バナナやブドウ、トマトはれっきとしたベリーに当たる。\n一方でイチゴは、花托（かたく）というめしべの土台が膨らんだ「偽果」で、表面のつぶつぶこそが本当の果実だ。\n名前に「ベリー」と付くのに、植物学上はベリーではないという逆転が起きている。",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/e/e4/Luxor%2C_Banana_Island%2C_Banana_Tree%2C_Egypt%2C_Oct_2004.jpg/640px-Luxor%2C_Banana_Island%2C_Banana_Tree%2C_Egypt%2C_Oct_2004.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "バナナ",
+            "果物",
+            "植物学",
+            "雑学"
+          ],
+          "genre": "飲食"
+        },
+        {
+          "title": "『バイオハザード』の海外名が「Resident Evil」なのは、biohazardが商標登録済みだったからだ",
+          "body": "カプコンのホラーゲーム『バイオハザード』は、海外では『Resident Evil』という別タイトルで売られている。\n北米で発売しようとした際、「biohazard」という語がすでに他社に商標登録されており、そのまま使えなかったのだ。\nそこで社内で新しい英題を公募し、洋館（residence）を舞台にした邪悪（evil）な物語という意味で「Resident Evil」が選ばれた。\n以来、同じシリーズが地域によって二つの名前を持つ珍しい状態が続いている。\nどちらの名も定着し、今や世界的なブランドになっている。",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/c/c0/Biohazard_symbol.svg/langja-330px-Biohazard_symbol.svg.png?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "ゲーム",
+            "バイオハザード",
+            "カプコン",
+            "商標"
+          ],
+          "genre": "ゲーム"
+        },
+        {
+          "title": "クレーンゲームの原型は、1920年代アメリカで流行した「ディガー」という機械だった",
+          "body": "景品をアームでつかむクレーンゲームのルーツは、意外にも100年ほど前のアメリカにさかのぼる。\n当時、建設現場で使われていた蒸気ショベルを子ども向けに小型化し、キャンディをすくって遊ぶ「ディガー（Digger）」という機械が生まれた。\n1920年代後半に爆発的な人気となり、多くの類似機がフォードの車のように大量生産された。\nやがて景品の射幸性が問題視されて規制されるなど、ギャンブル的な遊びと見なされた時代もあった。\n現在の日本のような「取れそうで取れない」プライズ機は、この長い歴史の先にある。",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/1/1f/Newufocatcher_%E3%82%B3%E3%83%94%E3%83%BC.JPG/640px-Newufocatcher_%E3%82%B3%E3%83%94%E3%83%BC.JPG?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "クレーンゲーム",
+            "ゲーム",
+            "歴史",
+            "アメリカ"
+          ],
+          "genre": "ゲーム",
+          "requestedKeyword": "クレーンゲーム"
+        },
+        {
+          "title": "『ちいかわ』の世界では、危険な「討伐」で高い報酬を得る過酷な労働経済が描かれている",
+          "body": "かわいい見た目とは裏腹に、『ちいかわ』の世界には生々しい労働の仕組みがある。\n主人公たちは「草むしり」「採取」「討伐」といった仕事をこなし、その報酬で食べ物や道具を手に入れて暮らしている。\n中でも討伐は、自分より大きな怪物を相手にする危険な仕事だが、その分だけ報酬も高く設定されている。\n仕事は「労働の鎧さん」が取りまとめ、現場で先着順にプレートを取って割り当てられるという描写もある。\nこの厳しい世界観のギャップが、多くの読者の心をつかんでいる。",
+          "image": "",
+          "tags": [
+            "ちいかわ",
+            "漫画",
+            "ナガノ",
+            "討伐"
+          ],
+          "genre": "漫画",
+          "requestedKeyword": "ちいかわ"
+        },
+        {
+          "title": "坂本龍馬は、日本で初めてブーツを履いた人物の一人とされている",
+          "body": "幕末の志士・坂本龍馬は、新しいものを積極的に取り入れる進取の人だった。\n残された写真の一枚では、和装の袴姿にもかかわらず、足元に西洋のブーツを履いている。\nこの姿から、龍馬は日本人で初めてブーツを履いた人物の一人だと語り伝えられている。\n拳銃を懐に忍ばせ、日本初の新婚旅行に出かけたエピソードなど、龍馬には「初めて」にまつわる逸話が多い。\n長崎には、そんな龍馬にちなんだブーツ像も建てられている。",
+          "image": "https://thumb.wikimedia.org/wikipedia/commons/thumb/4/4c/Sakamoto_Ryoma.jpg/640px-Sakamoto_Ryoma.jpg?utm_source=ja.wikipedia.org&utm_campaign=api&utm_content=thumbnail",
+          "tags": [
+            "坂本龍馬",
+            "幕末",
+            "ブーツ",
+            "人物"
+          ],
+          "genre": "人物",
+          "requestedKeyword": "坂本龍馬"
+        }
+      ]
+    },
+    {
       "date": "2026-09-14",
       "topics": [
         {
